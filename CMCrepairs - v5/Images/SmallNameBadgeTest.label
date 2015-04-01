@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DieCutLabel Version="8.0" Units="twips">
+	<PaperOrientation>Landscape</PaperOrientation>
+	<Id>WhiteNameBadge11356</Id>
+	<PaperName>11356 White Name Badge - virtual</PaperName>
+	<DrawCommands>
+		<RoundRectangle X="0" Y="0" Width="2340" Height="5040" Rx="270" Ry="270" />
+	</DrawCommands>
+	<ObjectInfo>
+		<AddressObject>
+			<Name>lblBrand</Name>
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />
+			<LinkedObjectName></LinkedObjectName>
+			<Rotation>Rotation0</Rotation>
+			<IsMirrored>False</IsMirrored>
+			<IsVariable>True</IsVariable>
+			<HorizontalAlignment>Left</HorizontalAlignment>
+			<VerticalAlignment>Top</VerticalAlignment>
+			<TextFitMode>ShrinkToFit</TextFitMode>
+			<UseFullFontHeight>True</UseFullFontHeight>
+			<Verticalized>False</Verticalized>
+			<StyledText />
+			<ShowBarcodeFor9DigitZipOnly>False</ShowBarcodeFor9DigitZipOnly>
+			<BarcodePosition>AboveAddress</BarcodePosition>
+		</AddressObject>
+		<Bounds X="331.200012207031" Y="315" Width="4438.7998046875" Height="525" />
+	</ObjectInfo>
+	<ObjectInfo>
+		<AddressObject>
+			<Name>lblPrice</Name>
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />
+			<LinkedObjectName></LinkedObjectName>
+			<Rotation>Rotation0</Rotation>
+			<IsMirrored>False</IsMirrored>
+			<IsVariable>True</IsVariable>
+			<HorizontalAlignment>Left</HorizontalAlignment>
+			<VerticalAlignment>Top</VerticalAlignment>
+			<TextFitMode>None</TextFitMode>
+			<UseFullFontHeight>True</UseFullFontHeight>
+			<Verticalized>False</Verticalized>
+			<StyledText />
+			<ShowBarcodeFor9DigitZipOnly>False</ShowBarcodeFor9DigitZipOnly>
+			<BarcodePosition>AboveAddress</BarcodePosition>
+		</AddressObject>
+		<Bounds X="690" Y="1560" Width="1770" Height="300" />
+	</ObjectInfo>
+	<ObjectInfo>
+		<ImageObject>
+			<Name>GRAPHIC</Name>
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />
+			<LinkedObjectName></LinkedObjectName>
+			<Rotation>Rotation0</Rotation>
+			<IsMirrored>False</IsMirrored>
+			<IsVariable>False</IsVariable>
+			<Image>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</Image>
+			<ScaleMode>Uniform</ScaleMode>
+			<BorderWidth>0</BorderWidth>
+			<BorderColor Alpha="255" Red="0" Green="0" Blue="0" />
+			<HorizontalAlignment>Center</HorizontalAlignment>
+			<VerticalAlignment>Center</VerticalAlignment>
+		</ImageObject>
+		<Bounds X="346.200012207031" Y="1545" Width="240" Height="323.19189453125" />
+	</ObjectInfo>
+	<ObjectInfo>
+		<TextObject>
+			<Name>TEXT</Name>
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />
+			<LinkedObjectName></LinkedObjectName>
+			<Rotation>Rotation0</Rotation>
+			<IsMirrored>False</IsMirrored>
+			<IsVariable>False</IsVariable>
+			<HorizontalAlignment>Left</HorizontalAlignment>
+			<VerticalAlignment>Top</VerticalAlignment>
+			<TextFitMode>ShrinkToFit</TextFitMode>
+			<UseFullFontHeight>True</UseFullFontHeight>
+			<Verticalized>False</Verticalized>
+			<StyledText>
+				<Element>
+					<String>Grade</String>
+					<Attributes>
+						<Font Family="Arial" Size="12" Bold="False" Italic="False" Underline="False" Strikeout="False" />
+						<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />
+					</Attributes>
+				</Element>
+			</StyledText>
+		</TextObject>
+		<Bounds X="361.200012207031" Y="990" Width="705" Height="285" />
+	</ObjectInfo>
+	<ObjectInfo>
+		<AddressObject>
+			<Name>lblGrade</Name>
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />
+			<LinkedObjectName></LinkedObjectName>
+			<Rotation>Rotation0</Rotation>
+			<IsMirrored>False</IsMirrored>
+			<IsVariable>True</IsVariable>
+			<HorizontalAlignment>Left</HorizontalAlignment>
+			<VerticalAlignment>Top</VerticalAlignment>
+			<TextFitMode>None</TextFitMode>
+			<UseFullFontHeight>True</UseFullFontHeight>
+			<Verticalized>False</Verticalized>
+			<StyledText />
+			<ShowBarcodeFor9DigitZipOnly>False</ShowBarcodeFor9DigitZipOnly>
+			<BarcodePosition>AboveAddress</BarcodePosition>
+		</AddressObject>
+		<Bounds X="1110" Y="975" Width="840" Height="390" />
+	</ObjectInfo>
+	<ObjectInfo>
+		<BarcodeObject>
+			<Name>BARCODE</Name>
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />
+			<LinkedObjectName></LinkedObjectName>
+			<Rotation>Rotation0</Rotation>
+			<IsMirrored>False</IsMirrored>
+			<IsVariable>True</IsVariable>
+			<Text>12345</Text>
+			<Type>Code39</Type>
+			<Size>Medium</Size>
+			<TextPosition>Bottom</TextPosition>
+			<TextFont Family="Arial" Size="8" Bold="False" Italic="False" Underline="False" Strikeout="False" />
+			<CheckSumFont Family="Arial" Size="8" Bold="False" Italic="False" Underline="False" Strikeout="False" />
+			<TextEmbedding>None</TextEmbedding>
+			<ECLevel>0</ECLevel>
+			<HorizontalAlignment>Right</HorizontalAlignment>
+			<QuietZonesPadding Left="0" Top="0" Right="0" Bottom="0" />
+		</BarcodeObject>
+		<Bounds X="2553.59985351563" Y="1500" Width="2145" Height="720" />
+	</ObjectInfo>
+</DieCutLabel>

@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="CMCrepairs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="500" Width="640" HorizontalAlignment="Center" >
+
+    <UserControl.Resources>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Orange" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <!-- The button template is defined here. -->
+                    <ControlTemplate TargetType="Button">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+
+                            <!-- Outer Rectangle with rounded corners. -->
+                            <Rectangle x:Name="outerRectangle"  
+                                HorizontalAlignment="Stretch"  
+                                VerticalAlignment="Stretch"  
+                                Stroke="{TemplateBinding Background}"  
+                                RadiusX="20" RadiusY="20" StrokeThickness="5"  
+                                Fill="White" />
+
+                            <!-- Inner Rectangle with rounded corners. -->
+                            <Rectangle x:Name="innerRectangle"  
+                                HorizontalAlignment="Stretch"  
+                                VerticalAlignment="Stretch" Stroke="Transparent"  
+                                StrokeThickness="20"  
+                                RadiusX="10" RadiusY="20"
+                                       Fill="White"/>
+
+                            <!-- Present Content (text) of the button. -->
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Margin="15"  
+                                    Content="{TemplateBinding  Content}"
+                                    TextBlock.Foreground="Black"
+                                    TextBlock.FontWeight="DemiBold"
+                                    TextBlock.FontSize="20"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    
+    <StackPanel Orientation="Vertical">
+        <TextBlock FontSize="72" FontWeight="Bold" Padding="0,0,0,60" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" HorizontalAlignment="Center" VerticalAlignment="Center">Menu</TextBlock>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+
+            <Button Margin="5" Width="170" Name="SaleButton" Click="SaleButton_Click">
+                <StackPanel>
+                    <Image Height="70" Source="/CMCrepairs;component/images/DVD-CD-icon.png" />
+                    <Label Content="Buy" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
+                </StackPanel>
+            </Button>
+            <Button Margin="5" Width="170" Name="RepairsButton" Click="RepairsButton_Click">
+                <StackPanel>
+                    <Image Height="70" Source="/CMCrepairs;component/images/Computer-icon.png" />
+                    <Label Content="Repairs" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
+                </StackPanel>
+            </Button>
+            <Button Margin="5" Width="170" Name="StockButton" Click="StockButton_Click">
+                <StackPanel>
+                    <Image Height="70" Source="/CMCrepairs;component/images/DVD-CD-icon.png" />
+                    <Label Content="Stock" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
+                </StackPanel>
+            </Button>
+            
+        </StackPanel>
+    </StackPanel>
+</UserControl>
