@@ -149,3 +149,37 @@ C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Deb
 C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.application
 C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.exe
 C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.pdb
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.exe
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.pdb
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\Images\SmallNameBadgeTest.label
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\CMCrepairs.exe.manifest
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\CMCrepairs.application
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\CMCrepairs.exe
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\CMCrepairs.pdb
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\DYMO.DLS.Runtime.dll
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\DYMO.Common.dll
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\DYMO.Label.Framework.xml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.csprojResolveAssemblyReference.cache
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Barcode\BarcodeWindow.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\LoactionAlert.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Sale.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\MainWindow.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\SearchID.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\PageSwitcher.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Repairs.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Stock.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Barcode\BarcodeWindow.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\LoactionAlert.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Sale.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\MainWindow.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\SearchID.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\PageSwitcher.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Repairs.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Stock.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\App.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs_MarkupCompile.cache
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.g.resources
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.Properties.Resources.resources
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.csproj.GenerateResource.Cache
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.exe.manifest
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.application

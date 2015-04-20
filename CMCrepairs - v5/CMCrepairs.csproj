@@ -103,6 +103,9 @@
     </Compile>
     <Compile Include="Barcode\Code39.cs" />
     <Compile Include="ISwitchable.cs" />
+    <Compile Include="Menu\LoactionAlert.xaml.cs">
+      <DependentUpon>LoactionAlert.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Menu\Sale.xaml.cs">
       <DependentUpon>Sale.xaml</DependentUpon>
     </Compile>
@@ -120,6 +123,10 @@
     </Compile>
     <Compile Include="Switcher.cs" />
     <Page Include="Barcode\BarcodeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu\LoactionAlert.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

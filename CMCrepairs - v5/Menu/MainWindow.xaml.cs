@@ -24,9 +24,13 @@ namespace CMCrepairs
         //    //base.OnClosing(e);
         //    //e.Cancel = true;
         //}
+        string location;
 
         public MainWindow()
         {
+            
+
+            location = Environment.GetEnvironmentVariable("Location", EnvironmentVariableTarget.User);
             InitializeComponent();
             //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }

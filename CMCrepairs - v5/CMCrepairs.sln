@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMCrepairs", "CMCrepairs.csproj", "{D03D38F7-6412-46A0-AAC5-184594C73091}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CMCRepairs.Win.Setup", "CMCRepairs.Win.Setup\CMCRepairs.Win.Setup.vdproj", "{147CEDCE-3BA6-4E94-A48A-44AA74CE2A1F}"
