@@ -14,7 +14,20 @@ namespace CMCrepairs
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             Switcher.pageSwitcher = this;
-            Switcher.Switch(new MainWindow());
+            string location;
+
+            location = Environment.GetEnvironmentVariable("Location", EnvironmentVariableTarget.User);
+            if (location == null || location == "")
+            {
+               
+                Switcher.Switch(new LocationAlert());
+
+
+            }
+            else if (location != null || location != "")
+            {
+                Switcher.Switch(new MainWindow());
+            }
         }
 
         public void Navigate(UserControl nextPage)
