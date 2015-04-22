@@ -1,0 +1,185 @@
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\bin\Debug\CMCrepairs.exe
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\bin\Debug\CMCrepairs.pdb
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\MainWindow.baml
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\App.g.cs
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\CMCrepairs_MarkupCompile.cache
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\CMCrepairs.g.resources
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\CMCrepairs.Properties.Resources.resources
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\CMCrepairs.csproj.GenerateResource.Cache
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\CMCrepairs.exe
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\CMCrepairs.pdb
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\Sales.baml
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\Sales.g.cs
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\Repairs.baml
+C:\Users\Aaron\Documents\Citi Project\CMCrepairs\obj\x86\Debug\Repairs.g.cs
+E:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\Images\SmallNameBadgeTest.label
+E:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\CMCrepairs.exe
+E:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\CMCrepairs.pdb
+E:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\DYMO.Label.Framework.dll
+E:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\Interop.Dymo.dll
+E:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\MySql.Data.dll
+E:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\DYMO.DLS.Runtime.dll
+E:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\DYMO.Common.dll
+E:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\DYMO.Label.Framework.xml
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Barcode\BarcodeWindow.baml
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Sale.baml
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\MainWindow.baml
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\SearchID.baml
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\PageSwitcher.baml
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Repairs.baml
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Stock.baml
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Barcode\BarcodeWindow.g.cs
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Sale.g.cs
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\MainWindow.g.cs
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\SearchID.g.cs
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\PageSwitcher.g.cs
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Repairs.g.cs
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Stock.g.cs
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\App.g.cs
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs_MarkupCompile.cache
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.g.resources
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.Properties.Resources.resources
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.csproj.GenerateResource.Cache
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.exe
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.pdb
+F:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\Images\SmallNameBadgeTest.label
+F:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\CMCrepairs.exe
+F:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\CMCrepairs.pdb
+F:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\DYMO.Label.Framework.dll
+F:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\Interop.Dymo.dll
+F:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\MySql.Data.dll
+F:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\DYMO.DLS.Runtime.dll
+F:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\DYMO.Common.dll
+F:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\DYMO.Label.Framework.xml
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.csprojResolveAssemblyReference.cache
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Barcode\BarcodeWindow.baml
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Sale.baml
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\MainWindow.baml
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\SearchID.baml
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\PageSwitcher.baml
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Repairs.baml
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Stock.baml
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Barcode\BarcodeWindow.g.cs
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Sale.g.cs
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\MainWindow.g.cs
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\SearchID.g.cs
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\PageSwitcher.g.cs
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Repairs.g.cs
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\Menu\Stock.g.cs
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\App.g.cs
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs_MarkupCompile.cache
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.g.resources
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.Properties.Resources.resources
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.csproj.GenerateResource.Cache
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.exe
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.pdb
+F:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\CMCrepairs.exe.manifest
+F:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\CMCrepairs.application
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.exe.manifest
+F:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.application
+E:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\CMCrepairs.exe.manifest
+E:\Software\Visual Studio\Projects\CMCrepairs\bin\Debug\CMCrepairs.application
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.csprojResolveAssemblyReference.cache
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.exe.manifest
+E:\Software\Visual Studio\Projects\CMCrepairs\obj\x86\Debug\CMCrepairs.application
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.exe
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.pdb
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\bin\Debug\Images\SmallNameBadgeTest.label
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\bin\Debug\CMCrepairs.exe.manifest
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\bin\Debug\CMCrepairs.application
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\bin\Debug\CMCrepairs.exe
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\bin\Debug\CMCrepairs.pdb
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\bin\Debug\DYMO.DLS.Runtime.dll
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\bin\Debug\DYMO.Common.dll
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\bin\Debug\DYMO.Label.Framework.xml
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.csprojResolveAssemblyReference.cache
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Barcode\BarcodeWindow.baml
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Sale.baml
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\MainWindow.baml
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\SearchID.baml
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\PageSwitcher.baml
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Repairs.baml
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Stock.baml
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Barcode\BarcodeWindow.g.cs
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Sale.g.cs
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\MainWindow.g.cs
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\SearchID.g.cs
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\PageSwitcher.g.cs
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Repairs.g.cs
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Stock.g.cs
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\App.g.cs
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs_MarkupCompile.cache
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.g.resources
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.Properties.Resources.resources
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.csproj.GenerateResource.Cache
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.exe.manifest
+C:\Users\Dominic\Downloads\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.application
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\bin\Debug\Images\SmallNameBadgeTest.label
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\bin\Debug\CMCrepairs.exe.manifest
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\bin\Debug\CMCrepairs.application
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\bin\Debug\CMCrepairs.exe
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\bin\Debug\CMCrepairs.pdb
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\bin\Debug\DYMO.Label.Framework.dll
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\bin\Debug\Interop.Dymo.dll
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\bin\Debug\MySql.Data.dll
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\bin\Debug\DYMO.DLS.Runtime.dll
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\bin\Debug\DYMO.Common.dll
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\bin\Debug\DYMO.Label.Framework.xml
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Barcode\BarcodeWindow.baml
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Sale.baml
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\MainWindow.baml
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\SearchID.baml
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\PageSwitcher.baml
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Repairs.baml
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Stock.baml
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Barcode\BarcodeWindow.g.cs
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Sale.g.cs
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\MainWindow.g.cs
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\SearchID.g.cs
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\PageSwitcher.g.cs
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Repairs.g.cs
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\Menu\Stock.g.cs
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\App.g.cs
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs_MarkupCompile.cache
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.g.resources
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.Properties.Resources.resources
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.csproj.GenerateResource.Cache
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.exe.manifest
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.application
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.exe
+C:\Users\Aaron\Downloads\Everything\Everything\Everything\CMCrepairs\obj\x86\Debug\CMCrepairs.pdb
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.exe
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.pdb
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\Images\SmallNameBadgeTest.label
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\CMCrepairs.exe.manifest
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\CMCrepairs.application
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\CMCrepairs.exe
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\CMCrepairs.pdb
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\DYMO.DLS.Runtime.dll
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\DYMO.Common.dll
+N:\GitHub\cmc\CMCrepairs - v5\bin\Debug\DYMO.Label.Framework.xml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.csprojResolveAssemblyReference.cache
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Barcode\BarcodeWindow.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\LoactionAlert.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Sale.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\MainWindow.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\SearchID.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\PageSwitcher.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Repairs.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Stock.baml
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Barcode\BarcodeWindow.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\LoactionAlert.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Sale.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\MainWindow.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\SearchID.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\PageSwitcher.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Repairs.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\Stock.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\App.g.cs
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs_MarkupCompile.cache
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.g.resources
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.Properties.Resources.resources
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.csproj.GenerateResource.Cache
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.exe.manifest
+N:\GitHub\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.application
