@@ -30,15 +30,21 @@ namespace CMCrepairs
         DymoLabels myLabel;
         DymoAddIn myDymoAddin;
         ArrayList listOfIDs = new ArrayList();
+
         //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
         MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-        //MySqlConnection myConn= new MySqlConnection("server=sql3.freesqldatabase.com;uid=sql370941;pwd=fU9*jL4%;database=sql370941;persist security info=false");
+
         string id;
+
+        int[] days = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 };
+        int[] months = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 
         #region Constructor
         public Sale()
         {
             InitializeComponent();
+
+            SetSaleDate();
 
             DateTime now = DateTime.Now;
             int year = now.Year;
@@ -53,14 +59,6 @@ namespace CMCrepairs
             {
                 btnSaveSaleForm.Visibility = Visibility.Hidden;
             }
-
-            //define the connection reference
-
-
-            ///TODO - AWC - Change below pwd
-
-            //myConn = new MySqlConnection("server=sql3.freesqldatabase.com;uid=sql370941;pwd=fU9*jL4%;database=sql370941;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
 
             //open the connection
             if (myConn.State != System.Data.ConnectionState.Open)
@@ -89,6 +87,18 @@ namespace CMCrepairs
         }
         #endregion
 
+        protected void SetSaleDate()
+        {
+            cboSaleDateDays.ItemsSource = days;
+            cboSaleDateMonth.ItemsSource = months;
+            txtSaleDateYear.Text = DateTime.Now.Year.ToString();
+        }
+
+        protected string MergeDate()
+        {
+            return cboSaleDateDays.Text + "/" + cboSaleDateMonth.Text + "/" + txtSaleDateYear.Text;
+        }
+
         #region Basic Validation
         private bool Validation()
         {
@@ -115,16 +125,6 @@ namespace CMCrepairs
         {
             if (Validation())
             {
-                //define the connection reference
-
-
-
-                ///TODO - AWC - Change below pwd
-
-
-               // MySqlConnection myConn = new MySqlConnection("server=sql3.freesqldatabase.com;uid=sql370941;pwd=fU9*jL4%;database=sql370941;persist security info=false");
-                //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
                 try
                 {
                     //open the connection
@@ -138,15 +138,6 @@ namespace CMCrepairs
                     mySQLcommand.Connection = myConn;
 
                     //define the command text
-
-                    //mySQLcommand.CommandText = "INSERT INTO cmc_repairs_stock(now_sold, date_sold, " +
-                    //    "price_sold, grade, checkmend, item, other_item, brand, model, imei, network, " +
-                    //    "charger, other_acc, sec_seal_num, box, warranty, mem_card, additional_notice, " +
-                    //    "buy_date, bought_price, name, address, contact_num, post_code)" +
-                    //    "values(@now_sold, @date_sold, @price_sold, @grade, @checkmend, @item, @other_item, " +
-                    //    "@brand, @model, @imei, @network, @charger, @other_acc, @sec_seal_num, @box, @warranty, " +
-                    //    "@mem_card, @addtional_notice, @buy_date, @bought_price, @name, @address, @contact_num, @post_code)";
-
                     mySQLcommand.CommandText = "INSERT INTO cmc_repairs_stock(now_sold, date_sold, " +
                         "price_sold, grade, item, other_item, brand, model, imei, network, " +
                         "charger, other_acc, sec_seal_num, box, warranty, mem_card, additional_notice, bought_date, from_screen, display_price, " +
@@ -230,10 +221,17 @@ namespace CMCrepairs
                     else
                         mySQLcommand.Parameters.AddWithValue("@addtional_notice", txtAdditionalNotice.Text);
 
-                    if (txtDate.Text.Equals(null) || txtDate.Text.Equals(""))
+                    //if (txtDate.Text.Equals(null) || txtDate.Text.Equals(""))
+                    //    mySQLcommand.Parameters.AddWithValue("@bought_date", "");
+                    //else
+                    //    mySQLcommand.Parameters.AddWithValue("@bought_date", txtDate.Text);
+
+                    if ((cboSaleDateDays.Text.Equals(null) || cboSaleDateDays.Text.Equals(""))
+                        && (cboSaleDateMonth.Text.Equals(null) || cboSaleDateMonth.Text.Equals(""))
+                        && (txtSaleDateYear.Text.Equals(null) || txtSaleDateYear.Text.Equals("")))
                         mySQLcommand.Parameters.AddWithValue("@bought_date", "");
                     else
-                        mySQLcommand.Parameters.AddWithValue("@bought_date", txtDate.Text);
+                        mySQLcommand.Parameters.AddWithValue("@addtional_notice", MergeDate());
 
                     mySQLcommand.Parameters.AddWithValue("@from_screen", "cmc_repairs_sale");
 
@@ -253,15 +251,14 @@ namespace CMCrepairs
                         mySQLcommand.Parameters.AddWithValue("@address", txtAddress.Text);
 
                     if (txtContactNum.Text.Equals(null) || txtContactNum.Text.Equals(""))
-                        mySQLcommand.Parameters.AddWithValue("@contact_num", 0);
+                        mySQLcommand.Parameters.AddWithValue("@contact_num", "");
                     else
-                        mySQLcommand.Parameters.AddWithValue("@contact_num", Int32.Parse(txtContactNum.Text));
+                        mySQLcommand.Parameters.AddWithValue("@contact_num", txtContactNum.Text);
 
                     if (txtPostCode.Text.Equals(null) || txtPostCode.Text.Equals(""))
                         mySQLcommand.Parameters.AddWithValue("@post_code", "");
                     else
                         mySQLcommand.Parameters.AddWithValue("@post_code", txtPostCode.Text);
-
 
                     //mySQLcommand.ExecuteNonQuery();
                     MySqlDataReader mySQLDataReader;
@@ -270,15 +267,7 @@ namespace CMCrepairs
                     //close the connection
                     myConn.Close();
 
-                    //empty the textboxes
-                    //refresh();
-
                     MessageBox.Show("Information Saved");
-
-                    //Switcher.Switch(new Sale());
-
-                    //MessageBox.Show("ID is: " + theDate);
-
                 }
                 catch (Exception ex)
                 {
@@ -336,8 +325,6 @@ namespace CMCrepairs
             }
         }
 
-
-
         private void txtContactNum_TextChanged(object sender, TextChangedEventArgs e)
         {
             int errorCounter = 0;
@@ -348,12 +335,6 @@ namespace CMCrepairs
                 txtContactNum.Text = txtContactNum.Text.Substring(0, txtContactNum.Text.Length - 1);
             }
         }
-
-
-
-
-
-        
 
         //private void txtBoughtPrice_TextChanged(object sender, TextChangedEventArgs e)
         //{
@@ -378,8 +359,14 @@ namespace CMCrepairs
         //}
         #endregion
 
+        #region Barcode Button
         private void btnBarcode_Click(object sender, RoutedEventArgs e)
         {
+            //Switcher.Switch(new BarcodeWindow());
+
+
+
+
             myDymoAddin = new DymoAddIn();
             myLabel = new DymoLabels();
 
@@ -407,14 +394,7 @@ namespace CMCrepairs
                         }
 
                         string combine = txtBrand.Text + " " + txtModel.Text;
-
-                        //define the connection reference
-
-
-                        ///TODO - AWC - Change below pwd
-
-                        //MySqlConnection myConn = new MySqlConnection("server=sql3.freesqldatabase.com;uid=sql370941;pwd=fU9*jL4%;database=sql370941;persist security info=false");
-                        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
+                        string combineAddDetailsNetwork = txtAdditionalNotice.Text + "  " + txtNetwork.Text;
 
                         //open the connection
                         if (myConn.State != System.Data.ConnectionState.Open)
@@ -444,29 +424,20 @@ namespace CMCrepairs
 
                         while (mySQLDataReader.Read())
                         {
-                            //int priceSoldNull = mySQLDataReader.GetOrdinal("price_sold");
-
                             id = mySQLDataReader.GetString("id");
                         }
 
                         //close the connection
                         myConn.Close();
 
-
-                        
-
                         myLabel.SetField("lblBrand", combine.ToString());
                         myLabel.SetField("lblSaleDate", txtSaleDate.Text);
                         myLabel.SetField("lbl_ID", id.ToString());
-                        myLabel.SetField("lblNetwork", txtNetwork.Text);
+                        myLabel.SetField("lblNetwork", combineAddDetailsNetwork.ToString());
                         myLabel.SetField("lblPrice", "£" + txtDisplayPrice.Text);
                         myDymoAddin.StartPrintJob();
                         myDymoAddin.Print(1, false);
                         myDymoAddin.EndPrintJob();
-
-                        //MessageBox.Show("'" + txtBrand.Text.ToString() +"'");
-
-                        
                     }
                 }
             }
@@ -475,5 +446,6 @@ namespace CMCrepairs
                 MessageBox.Show("There is an error with the label, please check all fields and try again.");
             }
         }
+        #endregion
     }
 }

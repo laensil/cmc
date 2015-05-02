@@ -3,13 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
-         Height="620" Width="550" >
+         Height="620" Width="560" >
 
     <UserControl.Resources>
-        
+
         <Style TargetType="{x:Type Label}" >
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+
+        <Style TargetType="{x:Type CheckBox}" >
+            <Setter Property="FontSize" Value="15" />
         </Style>
 
         <Style TargetType="{x:Type Button}">
@@ -17,7 +22,7 @@
             <Setter Property="Padding" Value="10,0,10,0" />
             <Setter Property="Template">
                 <Setter.Value>
-                     <!-- button template is defined here.-->
+                    <!-- button template is defined here.-->
                     <ControlTemplate TargetType="Button">
                         <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
 
@@ -37,7 +42,7 @@
                                 RadiusX="10" RadiusY="20"
                                        Fill="White" />
 
-                            <!--Present Content (text) of the button.--> 
+                            <!--Present Content (text) of the button.-->
                             <DockPanel Name="myContentPresenterDockPanel">
                                 <ContentPresenter x:Name="myContentPresenter" Margin="1"  
                                     Content="{TemplateBinding  Content}"
@@ -59,7 +64,8 @@
 
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="50"/><!--1-->
+            <RowDefinition Height="50"/>
+            <!--1-->
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -99,8 +105,8 @@
         <CheckBox Name="chbNowSold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Now Sold?" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontStyle="Italic" />
 
         <ComboBox PreviewTextInput="cboIDs_Change" MaxDropDownHeight="88" Name="cboIDs" PreviewKeyUp="cboIDs_Change" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" Height="22" DropDownClosed="cboIDs_Change" TabIndex="2" />
-        
-        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Date Sold" />
+
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="ID" />
         <!--<wfi:WindowsFormsHost Name="wfhDateSoldWrapper" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" >
             <wf:DateTimePicker Name="wfhDateTimePicker" Format="Short" />
         </wfi:WindowsFormsHost>-->
@@ -131,7 +137,7 @@
             <ComboBoxItem Content="Laptop" />
             <ComboBoxItem Content="Other" />
         </ComboBox>
-        
+
         <Label Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Content="Other Item" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <TextBox Name="txtOtherItem" TabIndex="7" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
@@ -147,7 +153,7 @@
         <Label Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Network" />
         <TextBox Name="txtNetwork" TabIndex="11" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
-        <Label Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Security Seal Num" />
+        <Label Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Security Seal No" />
         <TextBox Name="txtSecSealNum" TabIndex="14" Grid.Row="6" Grid.Column="6" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <CheckBox Name="chbCharger" TabIndex="12" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Charger" />
@@ -173,13 +179,13 @@
         <TextBox Name="txtAdditionalNotice" TabIndex="17" Grid.Row="9" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="6" Height="52" TextWrapping="WrapWithOverflow" />
 
         <Separator Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="8" Background="Black" />
-        
-        <Label Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Buy Date" />
+
+        <Label Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Buy Date" />
         <!--<wfi:WindowsFormsHost Name="wfhBuyDateWrapper" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" >
             <wf:DateTimePicker Name="wfhDateTimePicker2" Format="Short" />
         </wfi:WindowsFormsHost>-->
         <TextBox Name="txtBuyDate" TabIndex="18" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-        
+
         <Label Grid.Row="12" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Bought Price £" />
         <TextBox Name="txtBoughtPrice" TabIndex="19" Grid.Row="12" Grid.Column="6" Grid.ColumnSpan="2" Height="22" TextChanged="txtBoughtPrice_TextChanged" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 

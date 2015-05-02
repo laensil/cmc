@@ -3,13 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
-        Height="670" Width="500" >
+        Height="670" Width="560" >
 
     <UserControl.Resources>
 
         <Style TargetType="{x:Type Label}" >
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+
+        <Style TargetType="{x:Type CheckBox}" >
+            <Setter Property="FontSize" Value="15" />
         </Style>
 
         <Style TargetType="{x:Type Button}">
@@ -59,7 +64,8 @@
 
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="50" /><!--1-->
+            <RowDefinition Height="50" />
+            <!--1-->
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -79,7 +85,8 @@
             <RowDefinition />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
-            <RowDefinition Height="40" /><!--20-->
+            <RowDefinition Height="40" />
+            <!--20-->
 
         </Grid.RowDefinitions>
 
@@ -92,22 +99,23 @@
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
-            <ColumnDefinition /><!--8-->
+            <ColumnDefinition />
+            <!--8-->
 
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="48" >Repairs</TextBlock>
-        
+
         <CheckBox Name="chbCompleted" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Completed?" TabIndex="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontStyle="Italic" />
-        
+
         <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="ID" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <TextBox Name="txtDatetimeID"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" TabIndex="1" TextChanged="txtDatetimeID_TextChanged" />
         <ComboBox Name="cboIDs" MaxDropDownHeight="88" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Height="22" DropDownClosed="cboIDs_Change" />
-        
-        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Customer Name" />
+
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Cust. Name" />
         <TextBox Name="txtCustName" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5" Height="22" TabIndex="2" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
-        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Contact Number" />
+        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Contact Num" />
         <TextBox Name="txtContactNum" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5" Height="22" TabIndex="3" VerticalAlignment="Center" VerticalContentAlignment="Center" TextChanged="txtContactNum_TextChanged" />
 
         <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Content="Item" VerticalAlignment="Center" />
@@ -118,7 +126,7 @@
         </ComboBox>
 
         <CheckBox Name="chbItemCust" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="4" FontWeight="Bold" TabIndex="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Item with Customer" />
-        
+
         <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" >Details</Label>
         <TextBox Name="txtDetails" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" TabIndex="6" ToolTip="Details" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
@@ -137,12 +145,15 @@
         <TextBox Name="txtIMEI" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="1" Height="22" TabIndex="12" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <CheckBox Name="chbMemCard" Grid.Row="9" Grid.Column="0" FontWeight="Bold" Grid.ColumnSpan="2" TabIndex="17" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Mem Card" />
-        
-        <Label Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Other Accessories" />
+
+        <Label Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Other Acc." />
         <TextBox Name="txtOtherAcc" Grid.Row="10" Grid.Column="2" Height="22" Grid.ColumnSpan="5" TabIndex="20" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-        
+
         <Label Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="PO Date" />
         <TextBox Name="txtPOdate" Grid.Row="6" Grid.Column="6" Grid.ColumnSpan="2" Height="22" TabIndex="10" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <ComboBox Name="cboPODateDays" Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="1" MaxDropDownHeight="200" Height="22" Margin="0,0,5,0" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <ComboBox Name="cboPODateMonth" Grid.Row="5" Grid.Column="6" Grid.ColumnSpan="1" MaxDropDownHeight="200" Height="22" Margin="5,0,5,0" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox Name="txtPODateYear" Grid.Row="5" Grid.Column="7" Grid.ColumnSpan="1" Height="22" Margin="5,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Label Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="PO ID" />
         <TextBox Name="txtPOid" Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="2" Height="22" TabIndex="13" VerticalAlignment="Center" VerticalContentAlignment="Center" />
@@ -155,27 +166,32 @@
 
         <CheckBox Name="chbRTCinf" Grid.Row="9" Grid.Column="7" Grid.ColumnSpan="1" FontWeight="Bold" TabIndex="19" HorizontalAlignment="Left" VerticalAlignment="Center" Content="inf"  />
 
-        <Label Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Issues Description" />
+        <Label Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Issues Des." />
         <TextBox Name="txtIssuesDesc" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="2" TabIndex="21" TextWrapping="WrapWithOverflow " />
-        
-        <Label Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Backup (Specify)" />
+
+        <Label Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Backup Details" />
         <TextBox Name="txtBackupDetails" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="5" Height="22" TabIndex="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-        
+
         <Label Grid.Row="14" Grid.Column="0" Content="Quote £" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <TextBox Name="txtQuote" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" Height="22" TabIndex="23" VerticalAlignment="Center" VerticalContentAlignment="Center" TextChanged="txtQuote_TextChanged" />
-        
+
         <Label Grid.Row="14" Grid.Column="4" Content="Date" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <TextBox Name="txtDateQuoted" Grid.Row="14" Grid.Column="5" Grid.ColumnSpan="2" Height="22" TabIndex="24" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <ComboBox Name="cboDateQuotedDays" Grid.Row="13" Grid.Column="5" Grid.ColumnSpan="1" MaxDropDownHeight="200" Height="22" Margin="0,0,5,0" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <ComboBox Name="cboDateQuotedMonth" Grid.Row="13" Grid.Column="6" Grid.ColumnSpan="1" MaxDropDownHeight="200" Height="22" Margin="5,0,5,0" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox Name="txtDateQuotedYear" Grid.Row="13" Grid.Column="7" Grid.ColumnSpan="1" Height="22" Margin="5,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
-        <Label Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Fault tested and Collected by" />
+        <Label Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Fault tested, Collected by" />
         <TextBox Name="txtFaultTestedColl" Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="4" Height="22" TabIndex="25" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Label Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="1" Content="Date" HorizontalAlignment="Right" VerticalAlignment="Center" />
-
         <TextBox Name="txtPaidDate" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" Height="22" TabIndex="26" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <!--<wfi:WindowsFormsHost Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Name="wfhDateTimePickerWrapper" >
             <wf:DateTimePicker Name="wfhDateTimePicker" />
         </wfi:WindowsFormsHost>-->
+        <ComboBox Name="cboPaidDateDays" Grid.Row="16" Grid.Column="5" Grid.ColumnSpan="1" MaxDropDownHeight="200" Height="22" Margin="0,0,5,0" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <ComboBox Name="cboPaidDateMonth" Grid.Row="16" Grid.Column="6" Grid.ColumnSpan="1" MaxDropDownHeight="200" Height="22" Margin="5,0,5,0" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox Name="txtPaidDateYear" Grid.Row="16" Grid.Column="7" Grid.ColumnSpan="1" Height="22" Margin="5,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Label Grid.Row="16" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Paid £" />
         <TextBox Name="txtPaid" Grid.Row="16" Grid.Column="5" Grid.ColumnSpan="2" Height="22" TabIndex="27" VerticalAlignment="Center" VerticalContentAlignment="Center" TextChanged="txtPaid_TextChanged" />

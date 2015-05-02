@@ -55,8 +55,8 @@
 
             <Button Margin="5" Width="170" Name="SaleButton" Click="SaleButton_Click">
                 <StackPanel>
-                    <Image Height="70" Source="/CMCrepairs;component/images/DVD-CD-icon.png" />
-                    <Label Content="Buy" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
+                    <Image Height="70" Source="/CMCrepairs;component/images/Drive-Local-icon.png" />
+                    <Label Content="Trade" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
                 </StackPanel>
             </Button>
             <Button Margin="5" Width="170" Name="RepairsButton" Click="RepairsButton_Click">

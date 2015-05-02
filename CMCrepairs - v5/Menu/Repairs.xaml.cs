@@ -20,7 +20,6 @@ using CMCrepairs.Barcode;
 using DYMO.Label.Framework;
 using Label = DYMO.Label.Framework.Com.Label;
 using Dymo;
-
 #endregion
 
 namespace CMCrepairs
@@ -30,33 +29,30 @@ namespace CMCrepairs
     /// </summary>
     public partial class Repairs : UserControl, ISwitchable
     {
-        //public DymoAddInClass DymoAddIn;
-        //public DymoLabelsClass DymoLabels;
-        //private ILabel _label;
         DymoLabels myLabel;
         DymoAddIn myDymoAddin;
         bool isConnOpen = false;
-        //Dictionary<int, string> idsAndDateSold = new Dictionary<int, string>();
+
+        int[] days = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 };
+        int[] months = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+
         //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
         MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-        //MySqlConnection myConn = new MySqlConnection("server=sql3.freesqldatabase.com;uid=sql370941;pwd=fU9*jL4%;database=sql370941;persist security info=false");
+
         string id;
 
-        //private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        //OpenFileDialog openFileDialog1 = new OpenFileDialog();
-        
         #region Constructors
 
         public Repairs()
         {
             InitializeComponent();
-            //Load();
             FillCombo();
             DateTime now = DateTime.Now;
             int year = now.Year;
-            txtDatetimeID.Text = year.ToString() + now.Month.ToString("00") + now.Day.ToString("00") + now.Hour.ToString("00") + now.Minute.ToString("00") + now.Second.ToString("00");
+            string u = year.ToString().Remove(0, 2);
+            txtDatetimeID.Text = u + now.Month.ToString("00") + now.Day.ToString("00") + now.Hour.ToString("00") + now.Minute.ToString("00") + now.Second.ToString("00");
 
-            UpdateRepairButton.Visibility = Visibility.Hidden;
+            //UpdateRepairButton.Visibility = Visibility.Hidden;
             if (txtDatetimeID.Text.Length > 0)
             {
                 SaveRepairsForm.Visibility = Visibility.Visible;
@@ -65,9 +61,8 @@ namespace CMCrepairs
             {
                 SaveRepairsForm.Visibility = Visibility.Hidden;
             }
-            DeleteRepairButton.Visibility = Visibility.Hidden;
-            ClearRepairButton.Visibility = Visibility.Hidden;
-            //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            //DeleteRepairButton.Visibility = Visibility.Hidden;
+            //ClearRepairButton.Visibility = Visibility.Hidden;
         }
 
         public Repairs(string id)
@@ -83,9 +78,6 @@ namespace CMCrepairs
 
         private void SetID()
         {
-            //myConn = new MySqlConnection("server=sql3.freesqldatabase.com;uid=sql370941;pwd=fU9*jL4%;database=sql370941;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //open the connection
             if (myConn.State != System.Data.ConnectionState.Open)
                 myConn.Open();
@@ -114,8 +106,6 @@ namespace CMCrepairs
 
             while (mySQLDataReader.Read())
             {
-                //int priceSoldNull = mySQLDataReader.GetOrdinal("price_sold");
-
                 id = mySQLDataReader.GetString("id");
             }
 
@@ -128,14 +118,6 @@ namespace CMCrepairs
         {
             try
             {
-                //define the connection reference
-
-
-                ///TODO - AWC - Change below pwd // CMCSales
-
-                //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-                //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
                 //open the connection
                 if (myConn.State != System.Data.ConnectionState.Open)
                     myConn.Open();
@@ -151,7 +133,6 @@ namespace CMCrepairs
 
                 MySqlDataReader mySQLDataReader;
                 mySQLDataReader = mySQLcommand.ExecuteReader();
-
 
                 while (mySQLDataReader.Read())
                 {
@@ -170,19 +151,8 @@ namespace CMCrepairs
         #endregion
 
         #region cboIDs On Change
-        private void cboIDs_Change(object sender, EventArgs e)///////////////////////////////////////item not showing
+        private void cboIDs_Change(object sender, EventArgs e)
         {
-            //MessageBox.Show(cboIDs.Text);
-
-            //define the connection reference
-
-
-            ///TODO - AWC - Change below pwd
-
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -223,7 +193,7 @@ namespace CMCrepairs
 
                     string datetime_id = mySQLDataReader.GetString("datetime_id");
                     string customer_name = mySQLDataReader.IsDBNull(customer_nameNull) ? null : mySQLDataReader.GetString("customer_name");
-                    string contact_num = mySQLDataReader.IsDBNull(contact_numNull) ? null : mySQLDataReader.GetInt32("contact_num").ToString();
+                    string contact_num = mySQLDataReader.IsDBNull(contact_numNull) ? null : mySQLDataReader.GetString("contact_num");
                     string item = mySQLDataReader.IsDBNull(itemNull) ? null : mySQLDataReader.GetString("item");
                     string details = mySQLDataReader.IsDBNull(detailsNull) ? null : mySQLDataReader.GetString("details");
                     string password = mySQLDataReader.IsDBNull(passwordNull) ? null : mySQLDataReader.GetString("password");
@@ -350,7 +320,6 @@ namespace CMCrepairs
                         chbMemCard.IsChecked = false;
                     }
                     isConnOpen = true;
-                    //cboItem.Text = item;
                     txtDatetimeID.Text = datetime_id;
                     isConnOpen = false;
                     txtCustName.Text = customer_name;
@@ -368,6 +337,7 @@ namespace CMCrepairs
                     txtFaultTestedColl.Text = fault_tested_coll;
                     txtPaidDate.Text = paid_date;
                     txtPaid.Text = paid;
+                    cboItem.Text = item;
                 }
 
                 //close the connection
@@ -396,20 +366,10 @@ namespace CMCrepairs
             //MessageBox.Show("datetime is " + theDate);
             //MessageBox.Show("" + dtp.Value.ToShortDateString());
 
-            //MessageBox.Show("Saving data to the database");
-
-            //define the connection reference
-
-
-            ///TODO - AWC - Change below pwd
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-            
             //open the connection
             if (myConn.State != System.Data.ConnectionState.Open)
                 myConn.Open();
-            
+
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -423,8 +383,6 @@ namespace CMCrepairs
                 "values(@datetime_id, @completed, @customer_name, @contact_num, @item, @item_with_customer, " +
                 "@rwpa, @details, @charger, @password, @po_date, @bag, @imei, @po_id, @sim, @pa, @pa_inf, @mem_card, @rtc, @rtc_inf, @other_acc, " +
                 "@issues_description, @backup_specify, @quote_price, @quote_date, @fault_tested_coll, @paid_date, @paid)";
-
-            //DateTime mydate = DateTime.Now;
 
             //add values provided by user
             mySQLcommand.Parameters.AddWithValue("@datetime_id", txtDatetimeID.Text);
@@ -558,9 +516,9 @@ namespace CMCrepairs
             txtPaidDate.Text = null;
             txtPaid.Text = null;
 
-            MessageBox.Show("Saved");
+            FillCombo();
 
-            //Switcher.Switch(new Repairs());
+            MessageBox.Show("Information Saved");
         }
         #endregion
 
@@ -578,112 +536,67 @@ namespace CMCrepairs
         }
         #endregion
 
-        #region Refresh method
-        private void Refresh()
-        {
-            //empty the textboxes
-            txtDatetimeID.Text = null;
-            chbCompleted.IsChecked = false;
-            txtCustName.Text = null;
-            txtContactNum.Text = null;
-            cboItem.SelectedIndex = -1;
-            chbItemCust.IsChecked = false;
-            chbRWPA.IsChecked = false;
-            txtDetails.Text = null;
-            chbCharger.IsChecked = false;
-            txtPassword.Text = null;
-            txtPOdate.Text = null;
-            chbBag.IsChecked = false;
-            txtIMEI.Text = null;
-            txtPOid.Text = null;
-            chbSIM.IsChecked = false;
-            chbPA.IsChecked = false;
-            chbPAinf.IsChecked = false;
-            chbMemCard.IsChecked = false;
-            chbRTC.IsChecked = false;
-            chbRTCinf.IsChecked = false;
-            txtOtherAcc.Text = null;
-            txtIssuesDesc.Text = null;
-            txtBackupDetails.Text = null;
-            txtQuote.Text = null;
-            txtDateQuoted.Text = null;
-            txtFaultTestedColl.Text = null;
-            txtPaidDate.Text = null;
-            txtPaid.Text = null;
-
-            cboIDs.SelectedIndex = -1;
-        }
-        #endregion
-
         #region Clear Button
         private void ClearRepairButton_Click(object sender, RoutedEventArgs e)
         {
-            Refresh();
+            Switcher.Switch(new Repairs());
         }
         #endregion
 
         #region Delete Button
         private void DeleteRepairButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Deleting this record from the database");
+            System.Windows.Forms.DialogResult answer = MessageBox.Show("Are you sure?", "", System.Windows.Forms.MessageBoxButtons.YesNo);
 
-            //DateTime now = DateTime.Now;
-            //String theDate = "" + now.Year + now.Month + now.Day + now.Hour + now.Minute + now.Second;
-
-            //define the connection reference
-
-
-            ///TODO - AWC - Change below pwd
-
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
-            try
+            if (answer == System.Windows.Forms.DialogResult.Yes)
             {
-                //open the connection
-                if (myConn.State != System.Data.ConnectionState.Open)
-                    myConn.Open();
 
-                //define the command reference
-                MySqlCommand mySQLcommand = new MySqlCommand();
-
-                //define the connection used by the command object
-                mySQLcommand.Connection = myConn;
-
-                ////define the command text
-                mySQLcommand.CommandText = "DELETE FROM cmc_repairs_repair WHERE datetime_id=@datetime_id";
-
-                //DateTime mydate = DateTime.Now;
-
-                //values provided by user
-
-                if (txtDatetimeID.Text.Equals(null) || txtDatetimeID.Text.Equals(""))
-                    MessageBox.Show("This cannot be null");
-                else
-                    mySQLcommand.Parameters.AddWithValue("@datetime_id", txtDatetimeID.Text);
-
-                //mySQLcommand.ExecuteNonQuery();
-                MySqlDataReader mySQLDataReader;
-                mySQLDataReader = mySQLcommand.ExecuteReader();
-
-                while (mySQLDataReader.Read())
+                try
                 {
-                    
+                    //open the connection
+                    if (myConn.State != System.Data.ConnectionState.Open)
+                        myConn.Open();
+
+                    //define the command reference
+                    MySqlCommand mySQLcommand = new MySqlCommand();
+
+                    //define the connection used by the command object
+                    mySQLcommand.Connection = myConn;
+
+                    ////define the command text
+                    mySQLcommand.CommandText = "DELETE FROM cmc_repairs_repair WHERE datetime_id=@datetime_id";
+
+                    //DateTime mydate = DateTime.Now;
+
+                    //values provided by user
+
+                    if (txtDatetimeID.Text.Equals(null) || txtDatetimeID.Text.Equals(""))
+                        MessageBox.Show("This cannot be null");
+                    else
+                        mySQLcommand.Parameters.AddWithValue("@datetime_id", txtDatetimeID.Text);
+
+                    //mySQLcommand.ExecuteNonQuery();
+                    MySqlDataReader mySQLDataReader;
+                    mySQLDataReader = mySQLcommand.ExecuteReader();
+
+                    while (mySQLDataReader.Read())
+                    {
+
+                    }
+
+                    //close the connection
+                    myConn.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
 
-                //close the connection
-                myConn.Close();
+                MessageBox.Show("Record Deleted");
 
+                Switcher.Switch(new Repairs());
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            MessageBox.Show("Info DELETED!! Congrats");
-
-            Switcher.Switch(new Repairs());
         }
         #endregion
 
@@ -694,27 +607,12 @@ namespace CMCrepairs
             {
                 MessageBox.Show("Updating this record in the database");
 
-                //DateTime now = DateTime.Now;
-                //String theDate = "" + now.Year + now.Month + now.Day + now.Hour + now.Minute + now.Second;
-                //MessageBox.Show("datetime is " + theDate);
-                //MessageBox.Show("" + dtp.Value.ToShortDateString());
-
-                //define the connection reference
-
-
-
-                ///TODO - AWC - Change below pwd
-
-
-                //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-                //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
                 try
                 {
                     //open the connection
                     if (myConn.State != System.Data.ConnectionState.Open)
                         myConn.Open();
-                
+
                     //define the command reference
                     MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -727,8 +625,6 @@ namespace CMCrepairs
                         "issues_description=@issues_description, backup_specify=@backup_specify, quote_price=@quote_price, quote_date=@quote_date, fault_tested_coll=@fault_tested_coll, paid_date=@paid_date, paid=@paid " +
                         "WHERE datetime_id=@datetime_id";
 
-                    //DateTime mydate = DateTime.Now;
-
                     //add values provided by user
                     mySQLcommand.Parameters.AddWithValue("@datetime_id", txtDatetimeID.Text);
                     mySQLcommand.Parameters.AddWithValue("@completed", chbCompleted.IsChecked.Value);
@@ -739,9 +635,9 @@ namespace CMCrepairs
                         mySQLcommand.Parameters.AddWithValue("@customer_name", txtCustName.Text);
 
                     if (txtContactNum.Text.Equals(null) || txtContactNum.Text.Equals(""))
-                        mySQLcommand.Parameters.AddWithValue("@contact_num", 0);
+                        mySQLcommand.Parameters.AddWithValue("@contact_num", "");
                     else
-                        mySQLcommand.Parameters.AddWithValue("@contact_num", Int32.Parse(txtContactNum.Text));
+                        mySQLcommand.Parameters.AddWithValue("@contact_num", txtContactNum.Text);
 
                     if (cboItem.Text.Equals(null) || cboItem.Text.Equals(""))
                         mySQLcommand.Parameters.AddWithValue("@item", "");
@@ -845,12 +741,8 @@ namespace CMCrepairs
                     MessageBox.Show(ex.Message);
                 }
 
-                Refresh();
-
-                MessageBox.Show("Info UPDATED!! Congrats");
-                //MessageBox.Show("ID is: " + theDate);
+                MessageBox.Show("Information Updated");
             }
-            //else { }
         }
         #endregion
 
@@ -866,7 +758,7 @@ namespace CMCrepairs
             }
             else
                 errorCounter = Regex.Matches(txtContactNum.Text, @"[a-zA-Z]").Count + Regex.Matches(txtQuote.Text, @"[a-zA-Z]").Count + Regex.Matches(txtPaid.Text, @"[a-zA-Z]").Count;
-            
+
             if (errorCounter > 0)
                 MessageBox.Show("Price Sold/Bought Price/Contact Number cannot contain characters. Please try again");
             else
@@ -911,19 +803,8 @@ namespace CMCrepairs
 
         private void txtDatetimeID_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //TODO - AWC - readonly fields if ID is blank
-            //if (txtDatetimeID.Text.Length == 0)
-            //{
-            //    Refresh();
-            //    txtCustName.IsReadOnly = true;
-            //}
-            //else
-            //{
-            //    txtCustName.IsReadOnly = false;
-            //}
             if (!isConnOpen)
             {
-
                 if (cboIDs.Items.Contains(txtDatetimeID.Text))
                 {
                     cboIDs.Text = txtDatetimeID.Text;
@@ -954,230 +835,13 @@ namespace CMCrepairs
         }
         #endregion
 
-        //private void btnBarcode_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //    string PrtNames = DymoAddIn.GetDymoPrinters();
-
-        //    if (PrtNames != null)
-        //    {
-        //        // parse the result
-        //        int i = PrtNames.IndexOf('|');
-        //        while (i >= 0)
-        //        {
-        //            cboItem.Items.Add(PrtNames.Substring(0, i));
-        //            PrtNames = PrtNames.Remove(0, i + 1);
-        //            i = PrtNames.IndexOf('|');
-        //        }
-        //        if (PrtNames.Length > 0)
-        //            cboItem.Items.Add(PrtNames);
-
-        //        PrtNames = DymoAddIn.GetCurrentPrinterName();
-        //        if (PrtNames != null)
-        //            cboItem.SelectedIndex = cboItem.Items.IndexOf(PrtNames);
-        //        else
-        //            cboItem.SelectedIndex = 0;
-        //    }
-        //    //Switcher.Switch(new BarcodeWindow());
-
-        //    //DymoAddInClass _dymoAddin = new DymoAddInClass();
-        //    //DymoLabelsClass _dymoLabel = new DymoLabelsClass();
-
-        //    //var label = DYMO.Label.Framework.Label.Open("/CMCrepairs;component/Images/LargeAddressTestLabel.label");
-            
-        //    //label.SetObjectText("lblFirstName", firstName);
-        //    //label.SetObjectText("lblLastName", lastName);
-        //    //label.Print("DYMO LabelWriter 450");
-            
-
-        //    //var label = DYMO.Label.Framework.Label.Open("/CMCrepairs;component/Images/LargeAddressTestLabel.label");
-        //    //label.SetObjectText("lblBrand", "iPhone 4");
-        //    //label.SetObjectText("lblGrade", "A");
-        //    //label.SetObjectText("BARCODE", "54321");
-        //    //label.SetObjectText("lblPrice", "199.99");
-        //    //label.Print("DYMO LabelWriter 450");
-        //}
-
-
-
-
-
-
-
-
-        //private void SetupLabelObject()
-        //{
-        //    // clear edit control
-        //    txtDetails.Clear();
-
-        //    // clear all items first
-        //    cboItem.Items.Clear();
-
-        //    if (_label == null)
-        //        return;
-
-        //    foreach (string objName in _label.ObjectNames)
-        //        if (!string.IsNullOrEmpty(objName))
-        //            cboItem.Items.Add(objName);
-
-        //    if (cboItem.Items.Count > 0)
-        //        cboItem.SelectedIndex = 0;
-        //}
-
-        ////private void SetupTraySelection()
-        ////{
-        ////    // enable/disable tray based on selected printer
-
-        ////    TrayCmb.Enabled = false; // disable by default
-
-        ////    string printerName = LabelWriterCmb.Text;
-        ////    ILabelWriterPrinter printer = Framework.GetPrinters()[printerName] as ILabelWriterPrinter;
-        ////    TrayCmb.Enabled = printer != null && printer.IsTwinTurbo;
-        ////}
-
-        //private void SetupLabelWriterSelection()
-        //{
-        //    // clear all items first
-        //    comboBox1.Items.Clear();
-
-        //    foreach (IPrinter printer in Framework.GetPrinters())
-        //        comboBox1.Items.Add(printer.Name);
-
-        //    if (comboBox1.Items.Count > 0)
-        //        comboBox1.SelectedIndex = 0;
-        //}
-
-        //private void Load()
-        //{
-        //    //Application.ThreadException += OnThreadException;
-
-        //    //TrayCmb.SelectedIndex = 0;
-
-        //    // populate label objects
-        //    SetupLabelObject();
-
-        //    // obtain the currently selected printer
-        //    SetupLabelWriterSelection();
-
-        //    //UpdateControls();
-        //}
-
-        //private void bOpenFileDialog_Click(object sender, RoutedEventArgs e)
-        //{
-        //    openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-
-        //    if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-        //    {
-        //        _label = Framework.Open(openFileDialog1.FileName);
-
-        //        // show the file name
-        //        txtBackupDetails.Text = openFileDialog1.FileName;
-
-        //        // populate label objects
-        //        SetupLabelObject();
-
-        //        // setup paper tray selection
-        //        //SetupLabelWriterSelection(false);
-
-        //        //UpdateControls();
-        //    }
-        //}
-
-        //public enum DialogResult
-        //{
-        //    // Summary:
-        //    //     Nothing is returned from the dialog box. This means that the modal dialog
-        //    //     continues running.
-        //    None = 0,
-        //    //
-        //    // Summary:
-        //    //     The dialog box return value is OK (usually sent from a button labeled OK).
-        //    OK = 1,
-        //    //
-        //    // Summary:
-        //    //     The dialog box return value is Cancel (usually sent from a button labeled
-        //    //     Cancel).
-        //    Cancel = 2,
-        //    //
-        //    // Summary:
-        //    //     The dialog box return value is Abort (usually sent from a button labeled
-        //    //     Abort).
-        //    Abort = 3,
-        //    //
-        //    // Summary:
-        //    //     The dialog box return value is Retry (usually sent from a button labeled
-        //    //     Retry).
-        //    Retry = 4,
-        //    //
-        //    // Summary:
-        //    //     The dialog box return value is Ignore (usually sent from a button labeled
-        //    //     Ignore).
-        //    Ignore = 5,
-        //    //
-        //    // Summary:
-        //    //     The dialog box return value is Yes (usually sent from a button labeled Yes).
-        //    Yes = 6,
-        //    //
-        //    // Summary:
-        //    //     The dialog box return value is No (usually sent from a button labeled No).
-        //    No = 7,
-        //}
-
-        //private void btnBarcode_Click2(object sender, System.EventArgs e)
-        //{
-        //    IPrinter printer = Framework.GetPrinters()[comboBox1.Text];
-        //    if (printer is ILabelWriterPrinter)
-        //    {
-        //        ILabelWriterPrintParams printParams = null;
-        //        ILabelWriterPrinter labelWriterPrinter = printer as ILabelWriterPrinter;
-        //        //if (labelWriterPrinter.IsTwinTurbo)
-        //        //{
-        //        //    printParams = new LabelWriterPrintParams();
-        //        //    printParams.RollSelection = (RollSelection)Enum.Parse(typeof(RollSelection), TrayCmb.Text);
-        //        //}
-
-        //        _label.Print(printer, printParams);
-        //    }
-        //    else
-        //        _label.Print(printer); // print with default params
-        //}
-
-        //private void ObjectDataEdit_Leave(object sender, System.EventArgs e)
-        //{
-        //    //DymoLabels.SetField(ObjectNameCmb.Text, ObjectDataEdit.Text);
-        //    _label.SetObjectText(cboItem.Text, txtDetails.Text);
-        //}
-
-        ////private void UpdateControls()
-        ////{
-        ////    cboItem.Enabled = cboItem.Items.Count > 0;
-        ////    ObjectDataEdit.Enabled = cboItem.Items.Count > 0 && !string.IsNullOrEmpty(cboItem.Text);
-        ////    PrintLabelBtn.Enabled = _label != null && !string.IsNullOrEmpty(PrintLabelBtn.Text);
-        ////}
-
-        //private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-
-        //}
-
+        #region Barcode Button
         private void btnBarcode_Click(object sender, RoutedEventArgs e)
         {
-            //Switcher.Switch(new BarcodeWindow(txtDatetimeID.Text));
-
-            //SetID();
+            //Switcher.Switch(new BarcodeWindow());
 
             myDymoAddin = new DymoAddIn();
             myLabel = new DymoLabels();
-            //if (myDymoAddin.Open(@"C:\Users\Aaron\Documents\DYMO Label\Labels\Repair.label"))
-            //{
-            //    myLabel.SetField("lblItem", txtDatetimeID.Text);
-            //    myLabel.SetField("lblDate", txtDateQuoted.Text);
-            //    myLabel.SetField("lbl_ID", id.ToString());
-            //    myLabel.SetField("lblDateTime", txtDatetimeID.Text);
-            //    myDymoAddin.StartPrintJob();
-            //    myDymoAddin.Print(1, false);
-            //    myDymoAddin.EndPrintJob();
-            //}
 
             try
             {
@@ -1192,29 +856,18 @@ namespace CMCrepairs
                     {
                         SetID();
 
-                        //if (!listOfIDs.Contains(txtDateSold.Text))
-                        //if (idsAndDateSold.ContainsValue(txtDateSold.Text))
-                        //{
-                            //btnUpdate_Click(this, new RoutedEventArgs());
-                        //}
-                        //else
-                        //{
-                            //MessageBox.Show("Barcode has printed - item not updated - please check Date Sold ID");
-                        //}
+                        MessageBox.Show("Remember to save/update!");
 
-                        //string combine = txtBrand.Text + " " + txtModel.Text;
-
-                        //MessageBox.Show(id);
-
-                        //MessageBox.Show(txtDatetimeID.Text + " " + txtDateQuoted.Text + " " + id.ToString());
-
-                        myLabel.SetField("lblItem", txtDatetimeID.Text);
-                        myLabel.SetField("lblDate", txtDateQuoted.Text);
-                        myLabel.SetField("lbl_ID", id.ToString());
-                        myLabel.SetField("lblDateTime", txtDatetimeID.Text);
-                        myDymoAddin.StartPrintJob();
-                        myDymoAddin.Print(1, false);
-                        myDymoAddin.EndPrintJob();
+                        //myLabel.SetField("lblItem", txtDatetimeID.Text);
+                        //myLabel.SetField("lblDate", txtDateQuoted.Text);
+                        //myLabel.SetField("lblContactName", txtCustName.Text);
+                        //myLabel.SetField("lblItemDetails", txtIssuesDesc.Text);
+                        //myLabel.SetField("lblContactNum", txtContactNum.Text);
+                        //myLabel.SetField("lbl_ID", id.ToString());
+                        //myLabel.SetField("lblDateTime", txtDatetimeID.Text);
+                        //myDymoAddin.StartPrintJob();
+                        //myDymoAddin.Print(1, false);
+                        //myDymoAddin.EndPrintJob();
                     }
                 }
             }
@@ -1223,5 +876,6 @@ namespace CMCrepairs
                 MessageBox.Show("There is an error with the label, please check all fields and try again.");
             }
         }
+        #endregion
     }
 }

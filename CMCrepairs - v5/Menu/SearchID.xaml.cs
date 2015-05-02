@@ -33,9 +33,10 @@ namespace CMCrepairs.Menu
         string preScreen;
         DataSet ds;
         #endregion
+
         //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
         MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-        //MySqlConnection myConn = new MySqlConnection("server=sql3.freesqldatabase.com;uid=sql370941;pwd=fU9*jL4%;database=sql370941;persist security info=false");
+
         #region Constructor
         public SearchID(string prevScreen)
         {
@@ -69,7 +70,7 @@ namespace CMCrepairs.Menu
                     MessageBox.Show("[SearchID-0] Sorry there has been an error."
                 + " Please take note of error code and the steps taken to get the error.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Please select an item to search.");
             }
@@ -90,7 +91,7 @@ namespace CMCrepairs.Menu
             else if (preScreen.Equals("cmc_repairs_repair"))
                 Switcher.Switch(new Repairs());
             else
-                MessageBox.Show("Sorry there has been an error. Cannot cancel!");
+                MessageBox.Show("There has been an error. Cannot cancel!");
         }
 
         #endregion
@@ -98,14 +99,6 @@ namespace CMCrepairs.Menu
         #region Load Button
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
-            //define the connection reference
-
-
-            //TODO - AWC - pwd
-
-           // MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -115,7 +108,7 @@ namespace CMCrepairs.Menu
             if (preScreen.Equals("cmc_repairs_stock"))
             {
                 chbNowSold.Visibility = Visibility.Visible;
-                
+
                 ////define the command text
                 mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address' FROM " + preScreen + " ORDER BY date_sold DESC;";
             }
@@ -130,7 +123,7 @@ namespace CMCrepairs.Menu
             }
             else
             {
-                MessageBox.Show("Have you came from the repair or stock screen?");
+                MessageBox.Show("What screen did you come from?");
             }
             try
             {
@@ -163,13 +156,6 @@ namespace CMCrepairs.Menu
 
         private void txtOne_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //define the connection reference
-
-            //TODO - AWC - pwd
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -247,13 +233,6 @@ namespace CMCrepairs.Menu
         #region Repairs Screen Checkboxes
         private void chbCompleted_Checked(object sender, RoutedEventArgs e)
         {
-            //define the connection reference
-
-            //TODO - AWC - pwd
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -292,7 +271,7 @@ namespace CMCrepairs.Menu
             {
                 mySQLcommand.CommandText = "SELECT datetime_id AS 'ID', customer_name AS 'Customer Name', contact_num AS 'Contact Num', item AS 'Item', details AS 'Details', quote_price AS 'Price Quoted' FROM " + preScreen + " WHERE completed = 1";
             }
-            
+
             try
             {
                 //open the connection
@@ -318,13 +297,6 @@ namespace CMCrepairs.Menu
 
         private void chbCompleted_Unchecked(object sender, RoutedEventArgs e)
         {
-            //define the connection reference
-
-            //TODO - AWC - pwd
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -389,13 +361,6 @@ namespace CMCrepairs.Menu
 
         private void chbItemWithCustomer_Checked(object sender, RoutedEventArgs e)
         {
-            //define the connection reference
-
-            //TODO - AWC - pwd
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -460,13 +425,6 @@ namespace CMCrepairs.Menu
 
         private void chbItemWithCustomer_Unchecked(object sender, RoutedEventArgs e)
         {
-            //define the connection reference
-
-            //TODO - AWC - pwd
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -531,13 +489,6 @@ namespace CMCrepairs.Menu
 
         private void chbRWPA_Checked(object sender, RoutedEventArgs e)
         {
-            //define the connection reference
-
-            //TODO - AWC - pwd
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -602,13 +553,6 @@ namespace CMCrepairs.Menu
 
         private void chbRWPA_Unchecked(object sender, RoutedEventArgs e)
         {
-            //define the connection reference
-
-            //TODO - AWC - pwd
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -675,28 +619,18 @@ namespace CMCrepairs.Menu
         #region Stock Screen Checkboxes
         private void chbNowSold_Checked(object sender, RoutedEventArgs e)
         {
-            //define the connection reference
-
-            //TODO - AWC - pwd
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
             //define the connection used by the command object
             mySQLcommand.Connection = myConn;
 
-            //define the command text
-            //mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address' FROM " + preScreen + " WHERE now_sold = 1";
-
             if (txtOne.Text.Length > 0)
             {
                 mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address' FROM " + preScreen + " WHERE now_sold = 1 AND date_sold LIKE '%" + txtOne.Text + "%';";
             }
             else
-                ////define the command text
+                //define the command text
                 mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address' FROM " + preScreen + " WHERE now_sold = 1";
 
             try
@@ -724,13 +658,6 @@ namespace CMCrepairs.Menu
 
         private void chbNowSold_Unchecked(object sender, RoutedEventArgs e)
         {
-            //define the connection reference
-
-            //TODO - AWC - pwd
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 

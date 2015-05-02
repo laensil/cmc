@@ -30,10 +30,11 @@ namespace CMCrepairs
         DymoLabels myLabel;
         DymoAddIn myDymoAddin;
         ArrayList listOfIDs = new ArrayList();
-        Dictionary<int, string> idsAndDateSold = new Dictionary<int,string>();
+        Dictionary<int, string> idsAndDateSold = new Dictionary<int, string>();
+
         //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
         MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-        //MySqlConnection myConn = new MySqlConnection("server=sql3.freesqldatabase.com;uid=sql370941;pwd=fU9*jL4%;database=sql370941;persist security info=false");
+
         string id;
 
         #region Constructors
@@ -41,33 +42,9 @@ namespace CMCrepairs
         {
             InitializeComponent();
             FillCombo();
-            //DateTime now = DateTime.Now;
-            //int year = now.Year;
-            //string u = year.ToString().Remove(0, 2);
-            //txtDateSold.Text = u + now.Month + now.Day + now.Hour + now.Minute + now.Second;
 
             txtDateSold.Focus();
             btnUpdate.Visibility = Visibility.Hidden;
-            //if (txtDateSold.Text.Length > 0)
-            //{
-            //    SaveStockForm.Visibility = Visibility.Visible;
-            //}
-            //else
-            //{
-            //    SaveStockForm.Visibility = Visibility.Hidden;
-            //}
-            
-            //btnDelete.Visibility = Visibility.Hidden;
-            //btnClear.Visibility = Visibility.Hidden;
-            //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-
-            //define the connection reference
-
-
-            ///TODO - AWC - Change below pwd
-
-           // MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
 
             //open the connection
             if (myConn.State != System.Data.ConnectionState.Open)
@@ -103,15 +80,6 @@ namespace CMCrepairs
             FillCombo();
             cboIDs.SelectedValue = id;
             cboIDs_Change(cboIDs, new EventArgs());
-            //SaveStockForm.Visibility = Visibility.Hidden;
-
-            //define the connection reference
-
-
-            ///TODO - AWC - Change below pwd
-
-           // MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
 
             //open the connection
             if (myConn.State != System.Data.ConnectionState.Open)
@@ -142,11 +110,9 @@ namespace CMCrepairs
         }
         #endregion
 
+        #region SetID for barcode
         private void SetID()
         {
-            //myConn = new MySqlConnection("server=sql3.freesqldatabase.com;uid=sql370941;pwd=fU9*jL4%;database=sql370941;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //open the connection
             if (myConn.State != System.Data.ConnectionState.Open)
                 myConn.Open();
@@ -159,8 +125,6 @@ namespace CMCrepairs
 
             ////define the command text
             mySQLcommand.CommandText = "SELECT * FROM cmc_repairs_stock WHERE date_sold=@date_sold";
-
-            DateTime mydate = DateTime.Now;
 
             //add values provided by user
 
@@ -175,28 +139,19 @@ namespace CMCrepairs
 
             while (mySQLDataReader.Read())
             {
-                //int priceSoldNull = mySQLDataReader.GetOrdinal("price_sold");
-
                 id = mySQLDataReader.GetString("id");
             }
 
             //close the connection
             myConn.Close();
         }
+        #endregion
 
         #region Fill Combo
         void FillCombo()
         {
             try
             {
-                //define the connection reference
-
-
-                ///TODO - AWC - Change below pwd
-
-                //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-                //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
                 //open the connection
                 if (myConn.State != System.Data.ConnectionState.Open)
                     myConn.Open();
@@ -206,7 +161,7 @@ namespace CMCrepairs
 
                 //define the connection used by the command object
                 mySQLcommand.Connection = myConn;
-                
+
                 //define the command text
                 mySQLcommand.CommandText = "SELECT * FROM cmc_repairs_stock ORDER BY date_sold DESC ;";
 
@@ -232,17 +187,6 @@ namespace CMCrepairs
         #region cboIDs On Change
         private void cboIDs_Change(object sender, EventArgs e)
         {
-            //MessageBox.Show(cboIDs.Text);
-
-            
-            ///TODO - AWC - Change below pwd
-
-
-
-            //define the connection reference
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             //define the command reference
             MySqlCommand mySQLcommand = new MySqlCommand();
 
@@ -251,7 +195,7 @@ namespace CMCrepairs
 
             //define the command text
             mySQLcommand.CommandText = "SELECT * FROM cmc_repairs_stock WHERE date_sold='" + cboIDs.Text + "' ;";
-            //MessageBox.Show(cboIDs.Text);
+
             MySqlDataReader mySQLDataReader;
 
             try
@@ -306,7 +250,7 @@ namespace CMCrepairs
                     string bought_price = mySQLDataReader.IsDBNull(boughtPriceNull) ? null : mySQLDataReader.GetDecimal("bought_price").ToString();
                     string name = mySQLDataReader.IsDBNull(nameNull) ? null : mySQLDataReader.GetString("name");
                     string address = mySQLDataReader.IsDBNull(addressNull) ? null : mySQLDataReader.GetString("address");
-                    string contact_num = mySQLDataReader.IsDBNull(contactNumNull) ? null : mySQLDataReader.GetInt32("contact_num").ToString();
+                    string contact_num = mySQLDataReader.IsDBNull(contactNumNull) ? null : mySQLDataReader.GetString("contact_num");
                     string post_code = mySQLDataReader.IsDBNull(postCodeNull) ? null : mySQLDataReader.GetString("post_code");
                     string display_price = mySQLDataReader.IsDBNull(displayPriceNull) ? null : mySQLDataReader.GetString("display_price");
 
@@ -370,9 +314,6 @@ namespace CMCrepairs
 
                 //close the connection
                 myConn.Close();
-
-                //SetID();
-                //MessageBox.Show(id);
             }
             catch (Exception ex)
             {
@@ -386,17 +327,17 @@ namespace CMCrepairs
         {
             bool val = false;
             int errorCounter = 0;
-                 errorCounter = Regex.Matches(txtDateSold.Text,@"[a-zA-Z]").Count;
-                if (txtDateSold.Text.Equals(null) || txtDateSold.Text.Equals("") || errorCounter > 0)
-                {
-                    MessageBox.Show("Date Sold cannot be blank or contain characters. Please try again");
-                }
-                else
-                    errorCounter = Regex.Matches(txtPriceSold.Text, @"[a-zA-Z]").Count + Regex.Matches(txtBoughtPrice.Text, @"[a-zA-Z]").Count + Regex.Matches(txtContactNum.Text, @"[a-zA-Z]").Count + Regex.Matches(txtDisplayPrice.Text, @"[a-zA-Z]").Count;
-                    if (errorCounter > 0)
-                        MessageBox.Show("Price Sold/Bought Price/Contact Number/Display Price cannot contain characters. Please try again");
-                    else
-                        val = true;
+            errorCounter = Regex.Matches(txtDateSold.Text, @"[a-zA-Z]").Count;
+            if (txtDateSold.Text.Equals(null) || txtDateSold.Text.Equals("") || errorCounter > 0)
+            {
+                MessageBox.Show("Date Sold cannot be blank or contain characters. Please try again");
+            }
+            else
+                errorCounter = Regex.Matches(txtPriceSold.Text, @"[a-zA-Z]").Count + Regex.Matches(txtBoughtPrice.Text, @"[a-zA-Z]").Count + Regex.Matches(txtContactNum.Text, @"[a-zA-Z]").Count + Regex.Matches(txtDisplayPrice.Text, @"[a-zA-Z]").Count;
+            if (errorCounter > 0)
+                MessageBox.Show("Price Sold/Bought Price/Contact Number/Display Price cannot contain characters. Please try again");
+            else
+                val = true;
             return val;
         }
         #endregion
@@ -610,23 +551,12 @@ namespace CMCrepairs
         {
             if (Validation())
             {
-                MessageBox.Show("Updating data in the database");
-
                 //DateTimePicker dtp = this.wfhBuyDateWrapper.Child as DateTimePicker;
                 //DateTimePicker dtp2 = this.wfhDateSoldWrapper.Child as DateTimePicker;
                 //DateTime now = DateTime.Now;
                 //String theDate = "" + now.Year + now.Month + now.Day + now.Hour + now.Minute + now.Second;
                 //MessageBox.Show("datetime is " + theDate);
                 //MessageBox.Show("" + dtp.Value.ToShortDateString());
-
-                //define the connection reference
-
-
-
-                ///TODO - AWC - Change below pwd
-
-                //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-                //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
 
                 try
                 {
@@ -645,13 +575,11 @@ namespace CMCrepairs
                 //define the connection used by the command object
                 mySQLcommand.Connection = myConn;
 
-                ////define the command text
+                //define the command text
                 mySQLcommand.CommandText = "UPDATE cmc_repairs_stock SET now_sold=@now_sold, date_sold=@date_sold, price_sold=@price_sold, grade=@grade, checkmend=@checkmend, item=@item, other_item=@other_item, " +
                     "brand=@brand, model=@model, imei=@imei, network=@network, charger=@charger, other_acc=@other_acc, sec_seal_num=@sec_seal_num, box=@box, warranty=@warranty, " +
                     "mem_card=@mem_card, additional_notice=@addtional_notice, buy_date=@buy_date, bought_price=@bought_price, name=@name, address=@address, contact_num=@contact_num, post_code=@post_code, display_price=@display_price " +
                     "WHERE date_sold=@date_sold";
-
-                //DateTime mydate = DateTime.Now;
 
                 //add values provided by user
 
@@ -756,9 +684,9 @@ namespace CMCrepairs
                     mySQLcommand.Parameters.AddWithValue("@address", txtAddress.Text);
 
                 if (txtContactNum.Text.Equals(null) || txtContactNum.Text.Equals(""))
-                    mySQLcommand.Parameters.AddWithValue("@contact_num", 0);
+                    mySQLcommand.Parameters.AddWithValue("@contact_num", "");
                 else
-                    mySQLcommand.Parameters.AddWithValue("@contact_num", Int32.Parse(txtContactNum.Text));
+                    mySQLcommand.Parameters.AddWithValue("@contact_num", txtContactNum.Text);
 
                 if (txtPostCode.Text.Equals(null) || txtPostCode.Text.Equals(""))
                     mySQLcommand.Parameters.AddWithValue("@post_code", "");
@@ -782,11 +710,7 @@ namespace CMCrepairs
                 //close the connection
                 myConn.Close();
 
-                //refresh();
-
-                MessageBox.Show("Successfully updated the information");
-
-                //MessageBox.Show("ID is: " + theDate);
+                MessageBox.Show("Successfully updated information");
             }
             else { }
         }
@@ -795,21 +719,6 @@ namespace CMCrepairs
         #region Delete Click
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Deleting data from the database");
-
-            DateTime now = DateTime.Now;
-            String theDate = "" + now.Year + now.Month + now.Day + now.Hour + now.Minute + now.Second;
-
-            //define the connection reference
-
-
-
-
-            ///TODO - AWC - Change below pwd
-
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-            //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-
             try
             {
                 //open the connection
@@ -830,8 +739,6 @@ namespace CMCrepairs
             ////define the command text
             mySQLcommand.CommandText = "DELETE FROM cmc_repairs_stock WHERE date_sold=@date_sold";
 
-            DateTime mydate = DateTime.Now;
-
             //add values provided by user
 
             if (txtDateSold.Text.Equals(null) || txtDateSold.Text.Equals(""))
@@ -851,51 +758,16 @@ namespace CMCrepairs
             //close the connection
             myConn.Close();
 
-            refresh();
-
             MessageBox.Show("Information Deleted");
 
             Switcher.Switch(new Stock());
         }
         #endregion
 
-        #region Refresh Method
-        private void refresh()
-        {
-            //empty the textboxes
-            chbNowSold.IsChecked = false;
-            txtBuyDate.Text = null;
-            txtPriceSold.Text = null;
-            cboGrade.SelectedIndex = -1;
-            cboCheckMEND.SelectedIndex = -1;
-            cboItem.SelectedIndex = -1;
-            txtOtherItem.Text = null;
-            txtBrand.Text = null;
-            txtModel.Text = null;
-            txtIMEI.Text = null;
-            txtNetwork.Text = null;
-            chbCharger.IsChecked = false;
-            txtOtherAcc.Text = null;
-            txtSecSealNum.Text = null;
-            chbBox.IsChecked = false;
-            cboWarranty.SelectedIndex = -1;
-            chbMemCard.IsChecked = false;
-            txtAdditionalNotice.Text = null;
-            txtDateSold.Text = null;
-            txtBoughtPrice.Text = null;
-            txtName.Text = null;
-            txtAddress.Text = null;
-            txtContactNum.Text = null;
-            txtPostCode.Text = null;
-            txtDisplayPrice.Text = null;
-            cboIDs.SelectedIndex = -1;
-        }
-        #endregion
-
         #region Clear Click
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            refresh();
+            Switcher.Switch(new Stock());
         }
         #endregion
 
@@ -921,7 +793,7 @@ namespace CMCrepairs
                             }
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         MessageBox.Show("Could not convert Date Sold ID to Number - Please try again");
                     }
@@ -962,7 +834,7 @@ namespace CMCrepairs
             if (errorCounter > 0)
             {
                 MessageBox.Show("Price Sold cannot contain characters. Please try again");
-                txtPriceSold.Text = txtPriceSold.Text.Substring(0, txtPriceSold.Text.Length -1);
+                txtPriceSold.Text = txtPriceSold.Text.Substring(0, txtPriceSold.Text.Length - 1);
             }
         }
 
@@ -998,11 +870,13 @@ namespace CMCrepairs
                 txtDisplayPrice.Text = txtDisplayPrice.Text.Substring(0, txtDisplayPrice.Text.Length - 1);
             }
         }
-        
         #endregion
 
+        #region Barcode Button
         private void btnBarcode_Click(object sender, RoutedEventArgs e)
         {
+            //Switcher.Switch(new BarcodeWindow());
+
             myDymoAddin = new DymoAddIn();
             myLabel = new DymoLabels();
 
@@ -1022,26 +896,22 @@ namespace CMCrepairs
                     {
                         SetID();
 
-                        //if (!listOfIDs.Contains(txtDateSold.Text))
                         if (idsAndDateSold.ContainsValue(txtDateSold.Text))
                         {
                             btnUpdate_Click(this, new RoutedEventArgs());
                         }
                         else
                         {
-                            MessageBox.Show("Barcode has printed - item not updated - please check Date Sold ID");
+                            MessageBox.Show("Barcode has printed - item not updated - please check ID");
                         }
 
                         string combine = txtBrand.Text + " " + txtModel.Text;
-
-                        //MessageBox.Show(id);
-
-                        //MessageBox.Show(combine.ToString() + " " + txtDateSold.Text + " " + id.ToString() + " " + txtNetwork.Text + " " + txtDisplayPrice.Text);
+                        string combineAddDetailsNetwork = txtAdditionalNotice.Text + "  " + txtNetwork.Text;
 
                         myLabel.SetField("lblBrand", combine.ToString());
                         myLabel.SetField("lblSaleDate", txtDateSold.Text);
                         myLabel.SetField("lbl_ID", id.ToString());
-                        myLabel.SetField("lblNetwork", txtNetwork.Text);
+                        myLabel.SetField("lblNetwork", combineAddDetailsNetwork.ToString());
                         myLabel.SetField("lblPrice", "£" + txtDisplayPrice.Text);
                         myDymoAddin.StartPrintJob();
                         myDymoAddin.Print(1, false);
@@ -1054,5 +924,6 @@ namespace CMCrepairs
                 MessageBox.Show("There is an error with the label, please check all fields and try again.");
             }
         }
+        #endregion
     }
 }
