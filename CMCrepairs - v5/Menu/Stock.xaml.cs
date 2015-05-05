@@ -32,8 +32,15 @@ namespace CMCrepairs
         ArrayList listOfIDs = new ArrayList();
         Dictionary<int, string> idsAndDateSold = new Dictionary<int, string>();
 
-        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-        MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
+        int indexOfDay = 0;
+        int indexOfMonth = 0;
+
+        string[] days = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15",
+                            "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
+        string[] months = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
+
+        MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
+        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
 
         string id;
 
@@ -44,7 +51,9 @@ namespace CMCrepairs
             FillCombo();
 
             txtDateSold.Focus();
-            btnUpdate.Visibility = Visibility.Hidden;
+            //btnUpdate.Visibility = Visibility.Hidden;
+
+            SetDates();
 
             //open the connection
             if (myConn.State != System.Data.ConnectionState.Open)
@@ -109,6 +118,18 @@ namespace CMCrepairs
             myConn.Close();
         }
         #endregion
+
+        protected void SetDates()
+        {
+            cboBuyDateDays.ItemsSource = days;
+            cboBuyDateMonth.ItemsSource = months;
+            txtBuyDateYear.Text = DateTime.Now.Year.ToString();
+        }
+
+        protected string MergeDate()
+        {
+            return cboBuyDateDays.Text + "/" + cboBuyDateMonth.Text + "/" + txtBuyDateYear.Text;
+        }
 
         #region SetID for barcode
         private void SetID()
@@ -303,7 +324,29 @@ namespace CMCrepairs
                         chbMemCard.IsChecked = false;
                     }
                     txtAdditionalNotice.Text = additional_notice;
-                    txtBuyDate.Text = buy_date;
+                    //txtBuyDate.Text = buy_date;
+
+                    if (buy_date != null && !buy_date.Equals(""))
+                    {
+                        indexOfDay = buy_date.IndexOf("/");
+                        if (indexOfDay > 0)
+                        {
+                            cboBuyDateDays.Text = buy_date.Substring(0, indexOfDay);
+                            indexOfMonth = buy_date.IndexOf("/", indexOfDay + 1);
+                            if (indexOfMonth > indexOfDay)
+                            {
+                                cboBuyDateMonth.Text = buy_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+                                txtBuyDateYear.Text = buy_date.Substring(indexOfMonth + 1);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        cboBuyDateDays.Text = "";
+                        cboBuyDateMonth.Text = "";
+                        txtBuyDateYear.Text = "";
+                    }
+
                     txtBoughtPrice.Text = bought_price;
                     txtName.Text = name;
                     txtAddress.Text = address;
@@ -663,10 +706,17 @@ namespace CMCrepairs
 
                 //mySQLcommand.Parameters.AddWithValue("@buy_date", dtp.Value.ToShortDateString());
 
-                if (txtBuyDate.Text.Equals(null) || txtBuyDate.Text.Equals(""))
+                //if (txtBuyDate.Text.Equals(null) || txtBuyDate.Text.Equals(""))
+                //    mySQLcommand.Parameters.AddWithValue("@buy_date", "");
+                //else
+                //    mySQLcommand.Parameters.AddWithValue("@buy_date", txtBuyDate.Text);
+
+                if ((cboBuyDateDays.Text.Equals(null) || cboBuyDateDays.Text.Equals("")) ||
+                        (cboBuyDateMonth.Text.Equals(null) || cboBuyDateMonth.Text.Equals("")) ||
+                        (txtBuyDateYear.Text.Equals(null) || txtBuyDateYear.Text.Equals("")))
                     mySQLcommand.Parameters.AddWithValue("@buy_date", "");
                 else
-                    mySQLcommand.Parameters.AddWithValue("@buy_date", txtBuyDate.Text);
+                    mySQLcommand.Parameters.AddWithValue("@buy_date", MergeDate());
 
                 if (txtBoughtPrice.Text.Equals(null) || txtBoughtPrice.Text.Equals(""))
                     mySQLcommand.Parameters.AddWithValue("@bought_price", 0);
@@ -700,17 +750,19 @@ namespace CMCrepairs
 
                 //mySQLcommand.ExecuteNonQuery();
                 MySqlDataReader mySQLDataReader;
-                mySQLDataReader = mySQLcommand.ExecuteReader();
-
-                while (mySQLDataReader.Read())
+                try
                 {
-
+                    mySQLDataReader = mySQLcommand.ExecuteReader();
+                    MessageBox.Show("Successfully updated information");
+                }
+                catch (Exception)
+                {
                 }
 
                 //close the connection
                 myConn.Close();
 
-                MessageBox.Show("Successfully updated information");
+                
             }
             else { }
         }

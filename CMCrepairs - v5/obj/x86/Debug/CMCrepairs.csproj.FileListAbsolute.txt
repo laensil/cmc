@@ -194,7 +194,6 @@ F:\Software\Github\cmc\CMCrepairs - v5\bin\Debug\MySql.Data.dll
 F:\Software\Github\cmc\CMCrepairs - v5\bin\Debug\DYMO.DLS.Runtime.dll
 F:\Software\Github\cmc\CMCrepairs - v5\bin\Debug\DYMO.Common.dll
 F:\Software\Github\cmc\CMCrepairs - v5\bin\Debug\DYMO.Label.Framework.xml
-F:\Software\Github\cmc\CMCrepairs - v5\obj\x86\Debug\CMCrepairs.csprojResolveAssemblyReference.cache
 F:\Software\Github\cmc\CMCrepairs - v5\obj\x86\Debug\BarcodeWindow.baml
 F:\Software\Github\cmc\CMCrepairs - v5\obj\x86\Debug\Barcode\BarcodeWindow.baml
 F:\Software\Github\cmc\CMCrepairs - v5\obj\x86\Debug\Menu\LoactionAlert.baml

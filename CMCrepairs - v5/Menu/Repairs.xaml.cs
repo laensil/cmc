@@ -33,11 +33,15 @@ namespace CMCrepairs
         DymoAddIn myDymoAddin;
         bool isConnOpen = false;
 
-        int[] days = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 };
-        int[] months = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+        int indexOfDay = 0;
+        int indexOfMonth = 0;
 
-        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-        MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
+        string[] days = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15",
+                            "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
+        string[] months = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
+
+        MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
+        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
 
         string id;
 
@@ -51,6 +55,8 @@ namespace CMCrepairs
             int year = now.Year;
             string u = year.ToString().Remove(0, 2);
             txtDatetimeID.Text = u + now.Month.ToString("00") + now.Day.ToString("00") + now.Hour.ToString("00") + now.Minute.ToString("00") + now.Second.ToString("00");
+
+            SetDates();
 
             //UpdateRepairButton.Visibility = Visibility.Hidden;
             if (txtDatetimeID.Text.Length > 0)
@@ -72,9 +78,40 @@ namespace CMCrepairs
             cboIDs.SelectedValue = id;
             cboIDs_Change(cboIDs, new EventArgs());
             SaveRepairsForm.Visibility = Visibility.Hidden;
+            SetDates();
         }
 
         #endregion
+
+        protected void SetDates()
+        {
+            cboDateQuotedDays.ItemsSource = days;
+            cboDateQuotedMonth.ItemsSource = months;
+            txtDateQuotedYear.Text = DateTime.Now.Year.ToString();
+
+            cboPaidDateDays.ItemsSource = days;
+            cboPaidDateMonth.ItemsSource = months;
+            txtPaidDateYear.Text = DateTime.Now.Year.ToString();
+
+            cboPODateDays.ItemsSource = days;
+            cboPODateMonth.ItemsSource = months;
+            txtPODateYear.Text = DateTime.Now.Year.ToString();
+        }
+
+        protected string MergePODate()
+        {
+            return cboPODateDays.Text + "/" + cboPODateMonth.Text + "/" + txtPODateYear.Text;
+        }
+
+        protected string MergePaidDate()
+        {
+            return cboPaidDateDays.Text + "/" + cboPaidDateMonth.Text + "/" + txtPaidDateYear.Text;
+        }
+
+        protected string MergeQuoteDate()
+        {
+            return cboDateQuotedDays.Text + "/" + cboDateQuotedMonth.Text + "/" + txtDateQuotedYear.Text;
+        }
 
         private void SetID()
         {
@@ -326,16 +363,82 @@ namespace CMCrepairs
                     txtContactNum.Text = contact_num;
                     txtDetails.Text = details;
                     txtPassword.Text = password;
-                    txtPOdate.Text = po_date;
+                    //txtPOdate.Text = po_date;
+
+                    if (po_date != null && !po_date.Equals(""))
+                    {
+                        indexOfDay = po_date.IndexOf("/");
+                        if (indexOfDay > 0)
+                        {
+                            cboPODateDays.Text = po_date.Substring(0, indexOfDay);
+                            indexOfMonth = po_date.IndexOf("/", indexOfDay + 1);
+                            if (indexOfMonth > indexOfDay)
+                            {
+                                cboPODateMonth.Text = po_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+                                txtPODateYear.Text = po_date.Substring(indexOfMonth + 1);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        cboPODateDays.Text = "";
+                        cboPODateMonth.Text = "";
+                        txtPODateYear.Text = "";
+                    }
+
                     txtIMEI.Text = imei;
                     txtPOid.Text = po_id;
                     txtOtherAcc.Text = other_acc;
                     txtIssuesDesc.Text = issues_description;
                     txtBackupDetails.Text = backup_specify;
                     txtQuote.Text = quote_price;
-                    txtDateQuoted.Text = quote_date;
+                    //txtDateQuoted.Text = quote_date;
+
+                    if (quote_date != null && !quote_date.Equals(""))
+                    {
+                        indexOfDay = quote_date.IndexOf("/");
+                        if (indexOfDay > 0)
+                        {
+                            cboDateQuotedDays.Text = quote_date.Substring(0, indexOfDay);
+                            indexOfMonth = quote_date.IndexOf("/", indexOfDay + 1);
+                            if (indexOfMonth > indexOfDay)
+                            {
+                                cboDateQuotedMonth.Text = quote_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+                                txtDateQuotedYear.Text = quote_date.Substring(indexOfMonth + 1);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        cboDateQuotedDays.Text = "";
+                        cboDateQuotedMonth.Text = "";
+                        txtDateQuotedYear.Text = "";
+                    }
+
                     txtFaultTestedColl.Text = fault_tested_coll;
-                    txtPaidDate.Text = paid_date;
+                    //txtPaidDate.Text = paid_date;
+
+                    if (paid_date != null && !paid_date.Equals(""))
+                    {
+                        indexOfDay = paid_date.IndexOf("/");
+                        if (indexOfDay > 0)
+                        {
+                            cboPaidDateDays.Text = paid_date.Substring(0, indexOfDay);
+                            indexOfMonth = paid_date.IndexOf("/", indexOfDay + 1);
+                            if (indexOfMonth > indexOfDay)
+                            {
+                                cboPaidDateMonth.Text = paid_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+                                txtPaidDateYear.Text = paid_date.Substring(indexOfMonth + 1);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        cboPaidDateDays.Text = "";
+                        cboPaidDateMonth.Text = "";
+                        txtPaidDateYear.Text = "";
+                    }
+
                     txtPaid.Text = paid;
                     cboItem.Text = item;
                 }
@@ -418,10 +521,17 @@ namespace CMCrepairs
             else
                 mySQLcommand.Parameters.AddWithValue("@password", txtPassword.Text);
 
-            if (txtPOdate.Text.Equals(null) || txtPOdate.Text.Equals(""))
-                mySQLcommand.Parameters.AddWithValue("@po_date", "");
+            //if (txtPOdate.Text.Equals(null) || txtPOdate.Text.Equals(""))
+                //mySQLcommand.Parameters.AddWithValue("@po_date", "");
+            //else
+                //mySQLcommand.Parameters.AddWithValue("@po_date", txtPOdate.Text);
+
+            if ((cboPODateDays.Text.Equals(null) || cboPODateDays.Text.Equals("")) ||
+                (cboPODateMonth.Text.Equals(null) || cboPODateMonth.Text.Equals("")) ||
+                (txtPODateYear.Text.Equals(null) || txtPODateYear.Text.Equals("")))
+                mySQLcommand.Parameters.AddWithValue("@po_date","");
             else
-                mySQLcommand.Parameters.AddWithValue("@po_date", txtPOdate.Text);
+                mySQLcommand.Parameters.AddWithValue("@po_date", MergePODate());
 
             mySQLcommand.Parameters.AddWithValue("@bag", chbBag.IsChecked.Value);
 
@@ -462,63 +572,53 @@ namespace CMCrepairs
             else
                 mySQLcommand.Parameters.AddWithValue("@quote_price", Double.Parse(txtQuote.Text));
 
-            if (txtDateQuoted.Text.Equals(null) || txtDateQuoted.Text.Equals(""))
+            //if (txtDateQuoted.Text.Equals(null) || txtDateQuoted.Text.Equals(""))
+                //mySQLcommand.Parameters.AddWithValue("@quote_date", "");
+            //else
+                //mySQLcommand.Parameters.AddWithValue("@quote_date", txtDateQuoted.Text);
+
+            if ((cboDateQuotedDays.Text.Equals(null) || cboDateQuotedDays.Text.Equals("")) ||
+                (cboDateQuotedMonth.Text.Equals(null) || cboDateQuotedMonth.Text.Equals("")) ||
+                (txtDateQuotedYear.Text.Equals(null) || txtDateQuotedYear.Text.Equals("")))
                 mySQLcommand.Parameters.AddWithValue("@quote_date", "");
             else
-                mySQLcommand.Parameters.AddWithValue("@quote_date", txtDateQuoted.Text);
+                mySQLcommand.Parameters.AddWithValue("@quote_date", MergeQuoteDate());
 
             if (txtFaultTestedColl.Text.Equals(null) || txtFaultTestedColl.Text.Equals(""))
                 mySQLcommand.Parameters.AddWithValue("@fault_tested_coll", "");
             else
                 mySQLcommand.Parameters.AddWithValue("@fault_tested_coll", txtFaultTestedColl.Text);
 
-            if (txtPaidDate.Text.Equals(null) || txtPaidDate.Text.Equals(""))
+            //if (txtPaidDate.Text.Equals(null) || txtPaidDate.Text.Equals(""))
+                //mySQLcommand.Parameters.AddWithValue("@paid_date", "");
+            //else
+                //mySQLcommand.Parameters.AddWithValue("@paid_date", txtPaidDate.Text);
+
+            if ((cboPaidDateDays.Text.Equals(null) || cboPaidDateDays.Text.Equals("")) ||
+                (cboPaidDateMonth.Text.Equals(null) || cboPaidDateMonth.Text.Equals("")) ||
+                (txtPaidDateYear.Text.Equals(null) || txtPaidDateYear.Text.Equals("")))
                 mySQLcommand.Parameters.AddWithValue("@paid_date", "");
             else
-                mySQLcommand.Parameters.AddWithValue("@paid_date", txtPaidDate.Text);
+                mySQLcommand.Parameters.AddWithValue("@paid_date", MergePaidDate());
 
             if (txtPaid.Text.Equals(null) || txtPaid.Text.Equals(""))
                 mySQLcommand.Parameters.AddWithValue("@paid", 0);
             else
                 mySQLcommand.Parameters.AddWithValue("@paid", Double.Parse(txtPaid.Text));
 
-            mySQLcommand.ExecuteNonQuery();
+            try
+            {
+                mySQLcommand.ExecuteNonQuery();
+                MessageBox.Show("Information Saved");
+                Switcher.Switch(new Repairs());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Did not save. If it's a duplicate entry, try updating instead\nError Message: '" + ex.Message + "'");
+            }
+            
             //close the connection
-            myConn.Close();
-
-            //empty the textboxes
-            txtDatetimeID.Text = null;
-            chbCompleted.IsChecked = false;
-            txtCustName.Text = null;
-            txtContactNum.Text = null;
-            cboItem.SelectedIndex = -1;
-            chbItemCust.IsChecked = false;
-            chbRWPA.IsChecked = false;
-            txtDetails.Text = null;
-            chbCharger.IsChecked = false;
-            txtPassword.Text = null;
-            txtPOdate.Text = null;
-            chbBag.IsChecked = false;
-            txtIMEI.Text = null;
-            txtPOid.Text = null;
-            chbSIM.IsChecked = false;
-            chbPA.IsChecked = false;
-            chbPAinf.IsChecked = false;
-            chbMemCard.IsChecked = false;
-            chbRTC.IsChecked = false;
-            chbRTCinf.IsChecked = false;
-            txtOtherAcc.Text = null;
-            txtIssuesDesc.Text = null;
-            txtBackupDetails.Text = null;
-            txtQuote.Text = null;
-            txtDateQuoted.Text = null;
-            txtFaultTestedColl.Text = null;
-            txtPaidDate.Text = null;
-            txtPaid.Text = null;
-
-            FillCombo();
-
-            MessageBox.Show("Information Saved");
+            myConn.Close();            
         }
         #endregion
 
@@ -605,7 +705,7 @@ namespace CMCrepairs
         {
             if (Validation())
             {
-                MessageBox.Show("Updating this record in the database");
+                MessageBox.Show("Updating record");
 
                 try
                 {
@@ -659,10 +759,17 @@ namespace CMCrepairs
                     else
                         mySQLcommand.Parameters.AddWithValue("@password", txtPassword.Text);
 
-                    if (txtPOdate.Text.Equals(null) || txtPOdate.Text.Equals(""))
+                    //if (txtPOdate.Text.Equals(null) || txtPOdate.Text.Equals(""))
+                        //mySQLcommand.Parameters.AddWithValue("@po_date", "");
+                    //else
+                        //mySQLcommand.Parameters.AddWithValue("@po_date", txtPOdate.Text);
+
+                    if ((cboPODateDays.Text.Equals(null) || cboPODateDays.Text.Equals("")) ||
+                        (cboPODateMonth.Text.Equals(null) || cboPODateMonth.Text.Equals("")) ||
+                        (txtPODateYear.Text.Equals(null) || txtPODateYear.Text.Equals("")))
                         mySQLcommand.Parameters.AddWithValue("@po_date", "");
                     else
-                        mySQLcommand.Parameters.AddWithValue("@po_date", txtPOdate.Text);
+                        mySQLcommand.Parameters.AddWithValue("@po_date", MergePODate());
 
                     mySQLcommand.Parameters.AddWithValue("@bag", chbBag.IsChecked.Value);
 
@@ -703,20 +810,34 @@ namespace CMCrepairs
                     else
                         mySQLcommand.Parameters.AddWithValue("@quote_price", Double.Parse(txtQuote.Text));
 
-                    if (txtDateQuoted.Text.Equals(null) || txtDateQuoted.Text.Equals(""))
+                    //if (txtDateQuoted.Text.Equals(null) || txtDateQuoted.Text.Equals(""))
+                        //mySQLcommand.Parameters.AddWithValue("@quote_date", "");
+                    //else
+                        //mySQLcommand.Parameters.AddWithValue("@quote_date", txtDateQuoted.Text);
+
+                    if ((cboDateQuotedDays.Text.Equals(null) || cboDateQuotedDays.Text.Equals("")) ||
+                        (cboDateQuotedMonth.Text.Equals(null) || cboDateQuotedMonth.Text.Equals("")) ||
+                        (txtDateQuotedYear.Text.Equals(null) || txtDateQuotedYear.Text.Equals("")))
                         mySQLcommand.Parameters.AddWithValue("@quote_date", "");
                     else
-                        mySQLcommand.Parameters.AddWithValue("@quote_date", txtDateQuoted.Text);
+                        mySQLcommand.Parameters.AddWithValue("@quote_date", MergeQuoteDate());
 
                     if (txtFaultTestedColl.Text.Equals(null) || txtFaultTestedColl.Text.Equals(""))
                         mySQLcommand.Parameters.AddWithValue("@fault_tested_coll", "");
                     else
                         mySQLcommand.Parameters.AddWithValue("@fault_tested_coll", txtFaultTestedColl.Text);
 
-                    if (txtPaidDate.Text.Equals(null) || txtPaidDate.Text.Equals(""))
+                    //if (txtPaidDate.Text.Equals(null) || txtPaidDate.Text.Equals(""))
+                        //mySQLcommand.Parameters.AddWithValue("@paid_date", "");
+                    //else
+                        //mySQLcommand.Parameters.AddWithValue("@paid_date", txtPaidDate.Text);
+
+                    if ((cboPaidDateDays.Text.Equals(null) || cboPaidDateDays.Text.Equals("")) ||
+                        (cboPaidDateMonth.Text.Equals(null) || cboPaidDateMonth.Text.Equals("")) ||
+                        (txtPaidDateYear.Text.Equals(null) || txtPaidDateYear.Text.Equals("")))
                         mySQLcommand.Parameters.AddWithValue("@paid_date", "");
                     else
-                        mySQLcommand.Parameters.AddWithValue("@paid_date", txtPaidDate.Text);
+                        mySQLcommand.Parameters.AddWithValue("@paid_date", MergePaidDate());
 
                     if (txtPaid.Text.Equals(null) || txtPaid.Text.Equals(""))
                         mySQLcommand.Parameters.AddWithValue("@paid", 0);
@@ -727,11 +848,6 @@ namespace CMCrepairs
                     MySqlDataReader mySQLDataReader;
                     mySQLDataReader = mySQLcommand.ExecuteReader();
 
-                    while (mySQLDataReader.Read())
-                    {
-
-                    }
-
                     //close the connection
                     myConn.Close();
 
@@ -740,7 +856,6 @@ namespace CMCrepairs
                 {
                     MessageBox.Show(ex.Message);
                 }
-
                 MessageBox.Show("Information Updated");
             }
         }
@@ -809,27 +924,27 @@ namespace CMCrepairs
                 {
                     cboIDs.Text = txtDatetimeID.Text;
                     cboIDs_Change(this, new EventArgs());
-                    UpdateRepairButton.Visibility = Visibility.Visible;
-                    SaveRepairsForm.Visibility = Visibility.Hidden;
-                    DeleteRepairButton.Visibility = Visibility.Visible;
-                    ClearRepairButton.Visibility = Visibility.Visible;
+                    //UpdateRepairButton.Visibility = Visibility.Visible;
+                    //SaveRepairsForm.Visibility = Visibility.Hidden;
+                    //DeleteRepairButton.Visibility = Visibility.Visible;
+                    //ClearRepairButton.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    UpdateRepairButton.Visibility = Visibility.Hidden;
+                    //UpdateRepairButton.Visibility = Visibility.Hidden;
 
-                    if (txtDatetimeID.Text.Equals(null) || txtDatetimeID.Text.Equals(""))
-                    {
-                        SaveRepairsForm.Visibility = Visibility.Hidden;
-                        DeleteRepairButton.Visibility = Visibility.Hidden;
-                        ClearRepairButton.Visibility = Visibility.Hidden;
-                    }
-                    else
-                    {
-                        SaveRepairsForm.Visibility = Visibility.Visible;
-                        DeleteRepairButton.Visibility = Visibility.Visible;
-                        ClearRepairButton.Visibility = Visibility.Visible;
-                    }
+                    //if (txtDatetimeID.Text.Equals(null) || txtDatetimeID.Text.Equals(""))
+                    //{
+                    //    SaveRepairsForm.Visibility = Visibility.Hidden;
+                    //    DeleteRepairButton.Visibility = Visibility.Hidden;
+                    //    ClearRepairButton.Visibility = Visibility.Hidden;
+                    //}
+                    //else
+                    //{
+                    //    SaveRepairsForm.Visibility = Visibility.Visible;
+                    //    DeleteRepairButton.Visibility = Visibility.Visible;
+                    //    ClearRepairButton.Visibility = Visibility.Visible;
+                    //}
                 }
             }
         }
@@ -848,23 +963,26 @@ namespace CMCrepairs
                 if (myDymoAddin.Open(@"C:\Labels\Repair.label"))
                 {
                     if ((txtDatetimeID.Text.ToString().Equals(null) || txtDatetimeID.Text.ToString().Equals("")) ||
-                        (txtDateQuoted.Text.ToString().Equals(null) || txtDateQuoted.Text.ToString().Equals("")))
+                        (MergeQuoteDate().Equals("//")) || (txtCustName.Text.Equals(null) || txtCustName.Text.Equals("")) ||
+                        (txtIssuesDesc.Text.Equals(null) || txtIssuesDesc.Text.Equals("")) || (txtContactNum.Text.Equals(null) ||
+                        txtContactNum.Text.Equals("")))
                     {
-                        MessageBox.Show("ID or the quoted date is empty");
+                        MessageBox.Show("ID/Date Quoted/Customer Name/Issue Desc/Contact Num is empty");
                     }
                     else
                     {
                         SetID();
 
-                        MessageBox.Show("Remember to save/update!");
+                        MessageBox.Show("Remember to save/update after label has printed");
 
-                        //myLabel.SetField("lblItem", txtDatetimeID.Text);
-                        //myLabel.SetField("lblDate", txtDateQuoted.Text);
-                        //myLabel.SetField("lblContactName", txtCustName.Text);
-                        //myLabel.SetField("lblItemDetails", txtIssuesDesc.Text);
-                        //myLabel.SetField("lblContactNum", txtContactNum.Text);
-                        //myLabel.SetField("lbl_ID", id.ToString());
-                        //myLabel.SetField("lblDateTime", txtDatetimeID.Text);
+                        myLabel.SetField("lblItem", txtDatetimeID.Text);
+                        myLabel.SetField("lblDate", MergeQuoteDate());
+                        myLabel.SetField("lblContactName", txtCustName.Text);
+                        myLabel.SetField("lblItemDetails", txtIssuesDesc.Text);
+                        myLabel.SetField("lblContactNum", txtContactNum.Text);
+                        myLabel.SetField("lbl_ID", id.ToString());
+                        MessageBox.Show(id.ToString());
+                        myLabel.SetField("lblDateTime", txtDatetimeID.Text);
                         //myDymoAddin.StartPrintJob();
                         //myDymoAddin.Print(1, false);
                         //myDymoAddin.EndPrintJob();
