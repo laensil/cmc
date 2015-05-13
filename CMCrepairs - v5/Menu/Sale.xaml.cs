@@ -30,9 +30,10 @@ namespace CMCrepairs
         DymoLabels myLabel;
         DymoAddIn myDymoAddin;
         ArrayList listOfIDs = new ArrayList();
-
-        MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
+        MySqlConnection myConn = new MySqlConnection("server=sql21.hostinger.co.uk ;uid=u741972762_admin;password=cmcshop1;database=u741972762_cmcdb;persist security info=false");
+        //***** switch when using database on local computer
+        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
+        
 
         string id;
 
