@@ -21,7 +21,8 @@ namespace CMCrepairs
         string location;
 
         //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-        MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
+        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
+        MySqlConnection myConn = new MySqlConnection("server=sql21.hostinger.co.uk ;uid=u741972762_admin;password=cmcshop1;database=u741972762_cmcdb;persist security info=false");
 
         #region Constructor
         public MainWindow()
