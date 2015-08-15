@@ -31,19 +31,21 @@ namespace CMCrepairs
         DymoAddIn myDymoAddin;
         ArrayList listOfIDs = new ArrayList();
 
-        MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
+        MySqlConnection myConn;
 
         string id;
 
         string[] days = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15",
                             "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
-        string[] months = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
+
+        Dictionary<string, string> monthsWithNames = new Dictionary<string, string>();
 
         #region Constructor
-        public Sale()
+        public Sale(MySqlConnection myconn)
         {
             InitializeComponent();
+
+            myConn = myconn;
 
             SetSaleDate();
 
@@ -85,19 +87,21 @@ namespace CMCrepairs
 
             //close the connection
             myConn.Close();
+
+            PopulateMonthsDictionary(monthsWithNames);
         }
         #endregion
 
         protected void SetSaleDate()
         {
             cboSaleDateDays.ItemsSource = days;
-            cboSaleDateMonth.ItemsSource = months;
+            cboSaleDateMonth.ItemsSource = monthsWithNames.Keys;
             txtSaleDateYear.Text = DateTime.Now.Year.ToString();
         }
 
         protected string MergeDate()
         {
-            return cboSaleDateDays.Text + "/" + cboSaleDateMonth.Text + "/" + txtSaleDateYear.Text;
+            return cboSaleDateDays.Text + "/" + monthsWithNames[cboSaleDateMonth.Text] + "/" + txtSaleDateYear.Text;
         }
 
         #region Basic Validation
@@ -232,7 +236,7 @@ namespace CMCrepairs
                         && (txtSaleDateYear.Text.Equals(null) || txtSaleDateYear.Text.Equals("")))
                         mySQLcommand.Parameters.AddWithValue("@bought_date", "");
                     else
-                        mySQLcommand.Parameters.AddWithValue("@addtional_notice", MergeDate());
+                        mySQLcommand.Parameters.AddWithValue("@bought_date", MergeDate());
 
                     mySQLcommand.Parameters.AddWithValue("@from_screen", "cmc_repairs_sale");
 
@@ -275,9 +279,6 @@ namespace CMCrepairs
                     MessageBox.Show(ex.Message);
                 }
             }
-            else
-            {
-            }
         }
         #endregion
 
@@ -289,6 +290,9 @@ namespace CMCrepairs
 
         private void ExitButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            //System.Windows.Forms.DialogResult answer = MessageBox.Show("Menu?", "", System.Windows.Forms.MessageBoxButtons.YesNo);
+
+            //if (answer == System.Windows.Forms.DialogResult.Yes)
             Switcher.Switch(new MainWindow());
         }
         #endregion
@@ -296,7 +300,7 @@ namespace CMCrepairs
         #region Clear Click
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new Sale());
+            Switcher.Switch(new Sale(myConn));
         }
         #endregion
 
@@ -447,6 +451,60 @@ namespace CMCrepairs
                 MessageBox.Show("There is an error with the label, please check all fields and try again.");
             }
         }
+        #endregion
+
+        #region Populate Months Dictionary
+        public Dictionary<string, string> PopulateMonthsDictionary(Dictionary<string, string> months)
+        {
+            months.Add("Jan", "01");
+            months.Add("Feb", "02");
+            months.Add("Mar", "03");
+            months.Add("Apr", "04");
+            months.Add("May", "05");
+            months.Add("Jun", "06");
+            months.Add("Jul", "07");
+            months.Add("Aug", "08");
+            months.Add("Sep", "09");
+            months.Add("Oct", "10");
+            months.Add("Nov", "11");
+            months.Add("Dec", "12");
+
+            return months;
+        }
+        #endregion
+
+        #region Lock/Unlock Buttons
+
+        private void LockSaveButton()
+        {
+            btnSaveSaleForm.IsEnabled = false;
+        }
+
+        private void UnlockSaveButton()
+        {
+            btnSaveSaleForm.IsEnabled = true;
+        }
+
+        private void LockBarcodeButton()
+        {
+            btnBarcode.IsEnabled = false;
+        }
+
+        private void UnlockBarcodeButton()
+        {
+            btnBarcode.IsEnabled = true;
+        }
+
+        private void LockClearButton()
+        {
+            btnClear.IsEnabled = false;
+        }
+
+        private void UnlockClearButton()
+        {
+            btnClear.IsEnabled = true;
+        }
+
         #endregion
     }
 }

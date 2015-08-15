@@ -46,7 +46,6 @@
                             <DockPanel Name="myContentPresenterDockPanel">
                                 <ContentPresenter x:Name="myContentPresenter" Margin="1"  
                                     Content="{TemplateBinding  Content}"
-                                    TextBlock.Foreground="Black"
                                     TextBlock.FontWeight="DemiBold"
                                     TextBlock.FontSize="20"
                                     HorizontalAlignment="Center"
@@ -56,6 +55,20 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True" >
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="DarkGray" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="OrangeRed" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Background" Value="Orange" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
     </UserControl.Resources>
@@ -106,7 +119,7 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="48" >Repairs</TextBlock>
 
-        <CheckBox Name="chbCompleted" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Completed?" TabIndex="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontStyle="Italic" />
+        <CheckBox Name="chbCompleted" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Completed" TabIndex="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontStyle="Italic" Checked="chbCompleted_Checked" Unchecked="chbCompleted_Checked" />
 
         <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="ID" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <TextBox Name="txtDatetimeID"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" TabIndex="1" TextChanged="txtDatetimeID_TextChanged" />
@@ -147,7 +160,7 @@
         <CheckBox Name="chbMemCard" Grid.Row="9" Grid.Column="0" FontWeight="Bold" Grid.ColumnSpan="2" TabIndex="17" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Mem Card" />
 
         <Label Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Other Acc." />
-        <TextBox Name="txtOtherAcc" Grid.Row="10" Grid.Column="2" Height="22" Grid.ColumnSpan="5" TabIndex="20" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox Name="txtOtherAcc" Grid.Row="10" Grid.Column="2" Height="22" Grid.ColumnSpan="6" TabIndex="20" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Label Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="PO Date" />
         <!--<TextBox Name="txtPOdate" Grid.Row="6" Grid.Column="6" Grid.ColumnSpan="2" Height="22" TabIndex="10" VerticalAlignment="Center" VerticalContentAlignment="Center" />-->
@@ -167,10 +180,10 @@
         <CheckBox Name="chbRTCinf" Grid.Row="9" Grid.Column="7" Grid.ColumnSpan="1" FontWeight="Bold" TabIndex="19" HorizontalAlignment="Left" VerticalAlignment="Center" Content="inf"  />
 
         <Label Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Issues Des." />
-        <TextBox Name="txtIssuesDesc" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="2" TabIndex="21" TextWrapping="WrapWithOverflow " />
+        <TextBox Name="txtIssuesDesc" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="2" TabIndex="21" TextWrapping="WrapWithOverflow " />
 
         <Label Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Backup Details" />
-        <TextBox Name="txtBackupDetails" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="5" Height="22" TabIndex="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox Name="txtBackupDetails" Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="6" Height="22" TabIndex="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Label Grid.Row="14" Grid.Column="0" Content="Quote £" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <TextBox Name="txtQuote" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" Height="22" TabIndex="23" VerticalAlignment="Center" VerticalContentAlignment="Center" TextChanged="txtQuote_TextChanged" />
@@ -182,7 +195,7 @@
         <TextBox Name="txtDateQuotedYear" Grid.Row="14" Grid.Column="7" Grid.ColumnSpan="1" Height="22" Margin="5,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Label Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Fault tested, Collected by" />
-        <TextBox Name="txtFaultTestedColl" Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="4" Height="22" TabIndex="25" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBox Name="txtFaultTestedColl" Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="5" Height="22" TabIndex="25" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Label Grid.Row="16" Grid.Column="0" Grid.ColumnSpan="1" Content="Date" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <!--<TextBox Name="txtPaidDate" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" Height="22" TabIndex="26" VerticalAlignment="Center" VerticalContentAlignment="Center" />-->
@@ -194,14 +207,15 @@
         <TextBox Name="txtPaidDateYear" Grid.Row="16" Grid.Column="3" Grid.ColumnSpan="1" Height="22" Margin="5,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Label Grid.Row="16" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Paid £" />
-        <TextBox Name="txtPaid" Grid.Row="16" Grid.Column="5" Grid.ColumnSpan="2" Height="22" TabIndex="27" VerticalAlignment="Center" VerticalContentAlignment="Center" TextChanged="txtPaid_TextChanged" />
+        <TextBox Name="txtPaid" Grid.Row="16" Grid.Column="5" Grid.ColumnSpan="3" Height="22" TabIndex="27" VerticalAlignment="Center" VerticalContentAlignment="Center" TextChanged="txtPaid_TextChanged" />
 
-        <Button Grid.Row="18" Grid.Column="1" Grid.ColumnSpan="2" Name="SaveRepairsForm" Content="Save" Click="SaveRepairsForm_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" />
-        <Button Grid.Row="18" Grid.Column="3" Grid.ColumnSpan="2" Name="SearchRepairButton" Content="Search" Click="SearchRepairButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" />
-        <Button Grid.Row="18" Grid.Column="5" Grid.ColumnSpan="2" Name="ExitRepairButton" Click="ExitRepairButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" >Back</Button>
-        <Button Grid.Row="19" Grid.Column="1" Grid.ColumnSpan="2" Name="UpdateRepairButton" Click="UpdateRepairButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" >Update</Button>
-        <Button Grid.Row="19" Grid.Column="3" Grid.ColumnSpan="2" Name="DeleteRepairButton" Click="DeleteRepairButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" >Delete</Button>
-        <Button Grid.Row="19" Grid.Column="5" Grid.ColumnSpan="2" Name="ClearRepairButton" Click="ClearRepairButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" >Clear</Button>
+        <Button Grid.Row="18" Grid.Column="1" Grid.ColumnSpan="2" Name="btnSave" Content="Save" Click="SaveRepairsForm_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" />
+        <Button Grid.Row="18" Grid.Column="3" Grid.ColumnSpan="2" Name="btnSearch" Content="Search" Click="SearchRepairButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" />
+        <Button Grid.Row="18" Grid.Column="5" Grid.ColumnSpan="2" Name="btnBack" Click="ExitRepairButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" >Back</Button>
+        <Button Grid.Row="19" Grid.Column="1" Grid.ColumnSpan="2" Name="btnUpdate" Click="UpdateRepairButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" >Update</Button>
+        <Button Grid.Row="19" Grid.Column="3" Grid.ColumnSpan="2" Name="btnDelete" Click="DeleteRepairButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" >Delete</Button>
+        <Button Grid.Row="19" Grid.Column="5" Grid.ColumnSpan="2" Name="btnClear" Click="ClearRepairButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" >Clear</Button>
         <Button Grid.Row="20" Grid.Column="1" Grid.ColumnSpan="2" Name="btnBarcode" Content="Barcode" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" Click="btnBarcode_Click" />
+        <Button Grid.Row="20" Grid.Column="3" Grid.ColumnSpan="4" Name="btnCompleted" Content="Repair Completed" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" Click="btnCompleted_Click" />
     </Grid>
 </UserControl>

@@ -42,7 +42,6 @@
                             <DockPanel Name="myContentPresenterDockPanel">
                                 <ContentPresenter x:Name="myContentPresenter" Margin="1"  
                                     Content="{TemplateBinding  Content}"
-                                    TextBlock.Foreground="Black"
                                     TextBlock.FontWeight="DemiBold"
                                     TextBlock.FontSize="20"
                                     HorizontalAlignment="Center"
@@ -52,6 +51,20 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True" >
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="DarkGray" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="OrangeRed" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Background" Value="Orange" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
     </UserControl.Resources>

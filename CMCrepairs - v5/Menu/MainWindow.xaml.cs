@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 #endregion
 
 namespace CMCrepairs
@@ -18,6 +19,9 @@ namespace CMCrepairs
     public partial class MainWindow : UserControl, ISwitchable
     {
         string location;
+
+        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
+        MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
 
         #region Constructor
         public MainWindow()
@@ -30,17 +34,17 @@ namespace CMCrepairs
         #region Buttons
         private void RepairsButton_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new Repairs());
+            Switcher.Switch(new Repairs(myConn));
         }
 
         private void StockButton_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new Stock());
+            Switcher.Switch(new Stock(myConn));
         }
 
         private void SaleButton_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new Sale());
+            Switcher.Switch(new Sale(myConn));
         }
         #endregion
 

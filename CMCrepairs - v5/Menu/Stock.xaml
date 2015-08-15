@@ -19,6 +19,7 @@
 
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Orange" />
+            
             <Setter Property="Padding" Value="10,0,10,0" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -46,7 +47,6 @@
                             <DockPanel Name="myContentPresenterDockPanel">
                                 <ContentPresenter x:Name="myContentPresenter" Margin="1"  
                                     Content="{TemplateBinding  Content}"
-                                    TextBlock.Foreground="Black"
                                     TextBlock.FontWeight="DemiBold"
                                     TextBlock.FontSize="20"
                                     HorizontalAlignment="Center"
@@ -56,6 +56,20 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True" >
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="DarkGray" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="OrangeRed" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Background" Value="Orange" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
     </UserControl.Resources>
@@ -102,7 +116,7 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="48" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Stock</TextBlock>
 
-        <CheckBox Name="chbNowSold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Now Sold?" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontStyle="Italic" />
+        <CheckBox Name="chbNowSold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Now Sold?" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontStyle="Italic" Checked="chbNowSold_Checked" Unchecked="chbNowSold_Checked" />
 
         <ComboBox PreviewTextInput="cboIDs_Change" MaxDropDownHeight="88" Name="cboIDs" PreviewKeyUp="cboIDs_Change" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" Height="22" DropDownClosed="cboIDs_Change" TabIndex="2" />
 
@@ -206,11 +220,12 @@
 
         <!--<Button Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" Name="SaveStockForm" Content="Save" Click="SaveStockForm_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" />-->
         <Button Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" Name="btnSearch" Content="Search" Click="btnSearch_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" />
-        <Button Grid.Row="16" Grid.Column="3" Grid.ColumnSpan="2" Name="ExitButton" Click="ExitButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" >Back</Button>
-        <Button Grid.Row="16" Grid.Column="5" Grid.ColumnSpan="2" Name="btnUpdate" Click="btnUpdate_Click" Content="Update" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" />
+        <Button Grid.Row="16" Grid.Column="5" Grid.ColumnSpan="2" Name="ExitButton" Click="ExitButton_Click" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" >Back</Button>
+        <Button Grid.Row="16" Grid.Column="3" Grid.ColumnSpan="2" Name="btnUpdate" Click="btnUpdate_Click" Content="Update" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" />
         <Button Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="2" Name="btnDelete" Click="btnDelete_Click" Content="Delete" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" />
         <Button Grid.Row="17" Grid.Column="3" Grid.ColumnSpan="2" Name="btnClear" Click="btnClear_Click" Content="Clear" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" />
         <Button Grid.Row="17" Grid.Column="5" Grid.ColumnSpan="2" Name="btnBarcode" Content="Barcode" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" Click="btnBarcode_Click" />
+        <Button Grid.Row="18" Grid.Column="2" Grid.ColumnSpan="4" Name="btnSold" Content="Sold" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" Click="btnSold_Click" />
 
     </Grid>
 </UserControl>

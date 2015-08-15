@@ -32,16 +32,16 @@ namespace CMCrepairs.Menu
         #region Wee Variables
         string preScreen;
         DataSet ds;
+        MySqlConnection myConn;
         #endregion
 
-        MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
-        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=root;database=test;persist security info=false");
-
         #region Constructor
-        public SearchID(string prevScreen)
+        public SearchID(string prevScreen, MySqlConnection myconn)
         {
             preScreen = prevScreen;
             InitializeComponent();
+
+            myConn = myconn;
 
             ///Repair Checkboxes
             chbCompleted.Visibility = Visibility.Collapsed;
@@ -63,9 +63,9 @@ namespace CMCrepairs.Menu
                 var selectedRow = dgdIDs.SelectedCells[0].ToString();
                 DataRowView drv = (DataRowView)dgdIDs.SelectedItems[0];
                 if (preScreen.Equals("cmc_repairs_stock"))
-                    Switcher.Switch(new Stock(drv["Date Sold"].ToString()));
+                    Switcher.Switch(new Stock(drv["Date Sold"].ToString(), myConn));
                 else if (preScreen.Equals("cmc_repairs_repair"))
-                    Switcher.Switch(new Repairs(drv["ID"].ToString()));
+                    Switcher.Switch(new Repairs(drv["ID"].ToString(), myConn));
                 else
                     MessageBox.Show("[SearchID-0] Sorry there has been an error."
                 + " Please take note of error code and the steps taken to get the error.");
@@ -87,9 +87,9 @@ namespace CMCrepairs.Menu
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             if (preScreen.Equals("cmc_repairs_stock"))
-                Switcher.Switch(new Stock());
+                Switcher.Switch(new Stock(myConn));
             else if (preScreen.Equals("cmc_repairs_repair"))
-                Switcher.Switch(new Repairs());
+                Switcher.Switch(new Repairs(myConn));
             else
                 MessageBox.Show("There has been an error. Cannot cancel!");
         }
