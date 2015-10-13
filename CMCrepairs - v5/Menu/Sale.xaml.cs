@@ -30,8 +30,16 @@ namespace CMCrepairs
         DymoLabels myLabel;
         DymoAddIn myDymoAddin;
         ArrayList listOfIDs = new ArrayList();
+<<<<<<< HEAD
+        MySqlConnection myConn = new MySqlConnection("server=sql21.hostinger.co.uk ;uid=u741972762_admin;password=cmcshop1;database=u741972762_cmcdb;persist security info=false");
+        //***** switch when using database on local computer
+        //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
+        
+        string store = Environment.GetEnvironmentVariable("Location");
+=======
 
         MySqlConnection myConn;
+>>>>>>> origin/master
 
         string id;
 
@@ -146,10 +154,10 @@ namespace CMCrepairs
                     mySQLcommand.CommandText = "INSERT INTO cmc_repairs_stock(now_sold, date_sold, " +
                         "price_sold, grade, item, other_item, brand, model, imei, network, " +
                         "charger, other_acc, sec_seal_num, box, warranty, mem_card, additional_notice, bought_date, from_screen, display_price, " +
-                        "name, address, contact_num, post_code)" +
+                        "name, address, contact_num, post_code, store)" +
                         "values(@now_sold, @date_sold, @price_sold, @grade, @item, @other_item, " +
                         "@brand, @model, @imei, @network, @charger, @other_acc, @sec_seal_num, @box, @warranty, " +
-                        "@mem_card, @addtional_notice, @bought_date, @from_screen, @display_price, @name, @address, @contact_num, @post_code)";
+                        "@mem_card, @addtional_notice, @bought_date, @from_screen, @display_price, @name, @address, @contact_num, @post_code, @store )";
 
                     //add values provided by user
 
@@ -236,7 +244,11 @@ namespace CMCrepairs
                         && (txtSaleDateYear.Text.Equals(null) || txtSaleDateYear.Text.Equals("")))
                         mySQLcommand.Parameters.AddWithValue("@bought_date", "");
                     else
+<<<<<<< HEAD
+                        mySQLcommand.Parameters.AddWithValue("bought_date", MergeDate());
+=======
                         mySQLcommand.Parameters.AddWithValue("@bought_date", MergeDate());
+>>>>>>> origin/master
 
                     mySQLcommand.Parameters.AddWithValue("@from_screen", "cmc_repairs_sale");
 
@@ -264,6 +276,11 @@ namespace CMCrepairs
                         mySQLcommand.Parameters.AddWithValue("@post_code", "");
                     else
                         mySQLcommand.Parameters.AddWithValue("@post_code", txtPostCode.Text);
+
+                    if (store.Equals(null) || store.Equals(""))
+                        mySQLcommand.Parameters.AddWithValue("@store", "Unknown");
+                    else
+                        mySQLcommand.Parameters.AddWithValue("@store", store);
 
                     //mySQLcommand.ExecuteNonQuery();
                     MySqlDataReader mySQLDataReader;
