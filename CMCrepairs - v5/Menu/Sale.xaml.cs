@@ -30,16 +30,16 @@ namespace CMCrepairs
         DymoLabels myLabel;
         DymoAddIn myDymoAddin;
         ArrayList listOfIDs = new ArrayList();
-<<<<<<< HEAD
+
         MySqlConnection myConn = new MySqlConnection("server=sql21.hostinger.co.uk ;uid=u741972762_admin;password=cmcshop1;database=u741972762_cmcdb;persist security info=false");
         //***** switch when using database on local computer
         //MySqlConnection myConn = new MySqlConnection("server=localhost; user id=root;password=CMCsales;database=test;persist security info=false");
         
         string store = Environment.GetEnvironmentVariable("Location");
-=======
 
-        MySqlConnection myConn;
->>>>>>> origin/master
+
+        //MySqlConnection myConn;
+
 
         string id;
 
@@ -244,11 +244,11 @@ namespace CMCrepairs
                         && (txtSaleDateYear.Text.Equals(null) || txtSaleDateYear.Text.Equals("")))
                         mySQLcommand.Parameters.AddWithValue("@bought_date", "");
                     else
-<<<<<<< HEAD
+
                         mySQLcommand.Parameters.AddWithValue("bought_date", MergeDate());
-=======
-                        mySQLcommand.Parameters.AddWithValue("@bought_date", MergeDate());
->>>>>>> origin/master
+
+                       // mySQLcommand.Parameters.AddWithValue("@bought_date", MergeDate());
+
 
                     mySQLcommand.Parameters.AddWithValue("@from_screen", "cmc_repairs_sale");
 

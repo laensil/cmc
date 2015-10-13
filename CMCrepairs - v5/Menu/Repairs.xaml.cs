@@ -518,13 +518,13 @@ namespace CMCrepairs
             //define the command text
             mySQLcommand.CommandText = "INSERT INTO cmc_repairs_repair(datetime_id, completed, customer_name, item, item_with_customer, " +
                 "rwpa, details, charger, password, po_date, bag, imei, po_id, sim, pa, pa_inf, mem_card, rtc, rtc_inf, other_acc, issues_description, " +
-<<<<<<< HEAD
+
                 "backup_specify, quote_price, quote_date, fault_tested_coll, paid_date, paid, store)" +
                 "values(@datetime_id, @completed, @customer_name, @contact_num, @item, @item_with_customer, " +
-=======
+
                 "backup_specify, quote_price, quote_date, fault_tested_coll, paid_date, paid)" +
                 "values(@datetime_id, @completed, @customer_name, @item, @item_with_customer, " +
->>>>>>> origin/master
+
                 "@rwpa, @details, @charger, @password, @po_date, @bag, @imei, @po_id, @sim, @pa, @pa_inf, @mem_card, @rtc, @rtc_inf, @other_acc, " +
                 "@issues_description, @backup_specify, @quote_price, @quote_date, @fault_tested_coll, @paid_date, @paid, @store)";
 
