@@ -149,11 +149,14 @@ namespace CMCrepairs.Menu
         }
         #endregion
 
+        #region dgdIDs_DoubleClick
         private void dgdIDs_DoubleClick(object sender, EventArgs e)
         {
             btnSearch_Click(this, new RoutedEventArgs());
         }
+        #endregion
 
+        #region TxtOne_TextChanged
         private void txtOne_TextChanged(object sender, TextChangedEventArgs e)
         {
             //define the command reference
@@ -229,6 +232,7 @@ namespace CMCrepairs.Menu
                 MessageBox.Show(ex.Message);
             }
         }
+        #endregion
 
         #region Repairs Screen Checkboxes
         private void chbCompleted_Checked(object sender, RoutedEventArgs e)
@@ -696,6 +700,7 @@ namespace CMCrepairs.Menu
         }
         #endregion
 
+        #region Commented out code
         //private void txtTwo_TextChanged(object sender, TextChangedEventArgs e)
         //{
         //    //define the connection reference
@@ -885,5 +890,6 @@ namespace CMCrepairs.Menu
         //        MessageBox.Show(ex.Message);
         //    }
         //}
+        #endregion
     }
 }

@@ -100,17 +100,22 @@ namespace CMCrepairs
         }
         #endregion
 
+        #region Set Sale Date
         protected void SetSaleDate()
         {
             cboSaleDateDays.ItemsSource = days;
             cboSaleDateMonth.ItemsSource = monthsWithNames.Keys;
             txtSaleDateYear.Text = DateTime.Now.Year.ToString();
         }
+        #endregion
 
+        #region Merge Date
         protected string MergeDate()
         {
-            return cboSaleDateDays.Text + "/" + monthsWithNames[cboSaleDateMonth.Text] + "/" + txtSaleDateYear.Text;
+            //if
+                return cboSaleDateDays.Text + "/" + monthsWithNames[cboSaleDateMonth.Text] + "/" + txtSaleDateYear.Text;
         }
+        #endregion
 
         #region Basic Validation
         private bool Validation()
@@ -152,12 +157,12 @@ namespace CMCrepairs
 
                     //define the command text
                     mySQLcommand.CommandText = "INSERT INTO cmc_repairs_stock(now_sold, date_sold, " +
-                        "price_sold, grade, item, other_item, brand, model, imei, network, " +
+                        "price_sold, grade, item, other_item, brand, imei, network, " +
                         "charger, other_acc, sec_seal_num, box, warranty, mem_card, additional_notice, bought_date, from_screen, display_price, " +
                         "name, address, contact_num, post_code, store)" +
                         "values(@now_sold, @date_sold, @price_sold, @grade, @item, @other_item, " +
-                        "@brand, @model, @imei, @network, @charger, @other_acc, @sec_seal_num, @box, @warranty, " +
-                        "@mem_card, @addtional_notice, @bought_date, @from_screen, @display_price, @name, @address, @contact_num, @post_code, @store )";
+                        "@brand, @imei, @network, @charger, @other_acc, @sec_seal_num, @box, @warranty, " +
+                        "@mem_card, @addtional_notice, @bought_date, @from_screen, @display_price, @name, @address, @contact_num, @post_code, @store)";
 
                     //add values provided by user
 
@@ -193,10 +198,10 @@ namespace CMCrepairs
                     else
                         mySQLcommand.Parameters.AddWithValue("@brand", txtBrand.Text);
 
-                    if (txtModel.Text.Equals(null) || txtModel.Text.Equals(""))
-                        mySQLcommand.Parameters.AddWithValue("@model", "");
-                    else
-                        mySQLcommand.Parameters.AddWithValue("@model", txtModel.Text);
+                    //if (txtModel.Text.Equals(null) || txtModel.Text.Equals(""))
+                    //    mySQLcommand.Parameters.AddWithValue("@model", "");
+                    //else
+                    //    mySQLcommand.Parameters.AddWithValue("@model", txtModel.Text);
 
                     if (txtIMEI.Text.Equals(null) || txtIMEI.Text.Equals(""))
                         mySQLcommand.Parameters.AddWithValue("@imei", "");
@@ -240,8 +245,8 @@ namespace CMCrepairs
                     //    mySQLcommand.Parameters.AddWithValue("@bought_date", txtDate.Text);
 
                     if ((cboSaleDateDays.Text.Equals(null) || cboSaleDateDays.Text.Equals(""))
-                        && (cboSaleDateMonth.Text.Equals(null) || cboSaleDateMonth.Text.Equals(""))
-                        && (txtSaleDateYear.Text.Equals(null) || txtSaleDateYear.Text.Equals("")))
+                        || (cboSaleDateMonth.Text.Equals(null) || cboSaleDateMonth.Text.Equals(""))
+                        || (txtSaleDateYear.Text.Equals(null) || txtSaleDateYear.Text.Equals("")))
                         mySQLcommand.Parameters.AddWithValue("@bought_date", "");
                     else
 
@@ -397,7 +402,7 @@ namespace CMCrepairs
                 if (myDymoAddin.Open(@"C:\Labels\SaleSmall.label"))
                 {
                     if ((txtBrand.Text.ToString().Equals(null) || txtBrand.Text.ToString().Equals("")) ||
-                        (txtModel.Text.ToString().Equals(null) || txtModel.Text.ToString().Equals("")) ||
+                        //(txtModel.Text.ToString().Equals(null) || txtModel.Text.ToString().Equals("")) ||
                         (txtSaleDate.Text.ToString().Equals(null) || txtSaleDate.Text.ToString().Equals("")) ||
                         (txtNetwork.Text.ToString().Equals(null) || txtNetwork.Text.ToString().Equals("")) ||
                         (txtDisplayPrice.Text.ToString().Equals(null) || txtDisplayPrice.Text.ToString().Equals("")))
@@ -415,7 +420,7 @@ namespace CMCrepairs
                             MessageBox.Show("Barcode has printed and Item already has been saved");
                         }
 
-                        string combine = txtBrand.Text + " " + txtModel.Text;
+                        string combine = txtBrand.Text;// +" " + txtModel.Text;
                         string combineAddDetailsNetwork = txtAdditionalNotice.Text + "  " + txtNetwork.Text;
 
                         //open the connection

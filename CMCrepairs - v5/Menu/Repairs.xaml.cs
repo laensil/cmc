@@ -32,7 +32,7 @@ namespace CMCrepairs
         DymoLabels myLabel;
         DymoAddIn myDymoAddin;
         bool isConnOpen = false;
-
+        
         int indexOfDay = 0;
         int indexOfMonth = 0;
         string store = Environment.GetEnvironmentVariable("Location");
@@ -89,6 +89,7 @@ namespace CMCrepairs
 
         #endregion
 
+        #region Set Dates
         protected void SetDates()
         {
             cboDateQuotedDays.ItemsSource = days;
@@ -103,6 +104,7 @@ namespace CMCrepairs
             cboPODateMonth.ItemsSource = monthsWithNames.Keys;
             txtPODateYear.Text = DateTime.Now.Year.ToString();
         }
+        #endregion
 
         #region Populate Months Dictionary
         public Dictionary<string, string> PopulateMonthsDictionary(Dictionary<string, string> months)
@@ -124,6 +126,7 @@ namespace CMCrepairs
         }
         #endregion
 
+        #region Merging Dates Section
         protected string MergePODate()
         {
             return cboPODateDays.Text + "/" + monthsWithNames[cboPODateMonth.Text] + "/" + txtPODateYear.Text;
@@ -136,9 +139,33 @@ namespace CMCrepairs
 
         protected string MergeQuoteDate()
         {
+            //int dateQuotedMonthOutput = 0;
+
+            
+
+            //if (int.TryParse(cboDateQuotedMonth.Text, out dateQuotedMonthOutput))
+            //{
+            //    string dateQuotedMonthOutputString = dateQuotedMonthOutput.ToString();
+
+            //    if (dateQuotedMonthOutputString.StartsWith("0")
+            //        && dateQuotedMonthOutputString.Length == 2)
+            //    {
+            //        dateQuotedMonthOutputString.Remove(0,1);
+
+
+            //    }
+
+            //    //Not sure what to return here, will need to do more testing
+            //    //Why am I using numbers at all? Stored as a string value in the dictionary
+            //    //return cboDateQuotedDays.Text + "/" + monthsWithNames.ElementAt(2);
+
+            //}
+
             return cboDateQuotedDays.Text + "/" + monthsWithNames[cboDateQuotedMonth.Text] + "/" + txtDateQuotedYear.Text;
         }
+        #endregion
 
+        #region Set ID Method
         private void SetID()
         {
             //open the connection
@@ -175,6 +202,7 @@ namespace CMCrepairs
             //close the connection
             myConn.Close();
         }
+        #endregion
 
         #region fill combo box
         void FillCombo()
@@ -400,7 +428,15 @@ namespace CMCrepairs
                             indexOfMonth = po_date.IndexOf("/", indexOfDay + 1);
                             if (indexOfMonth > indexOfDay)
                             {
-                                cboPODateMonth.Text = po_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+                                int positionOfPoMonth = -1;
+                                string monthPoNumber = po_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+
+                                if (int.TryParse(monthPoNumber, out positionOfPoMonth))
+                                {
+                                    cboPODateMonth.SelectedIndex = positionOfPoMonth - 1;
+                                }
+
+                                //cboPODateMonth.Text = po_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
                                 txtPODateYear.Text = po_date.Substring(indexOfMonth + 1);
                             }
                         }
@@ -429,7 +465,15 @@ namespace CMCrepairs
                             indexOfMonth = quote_date.IndexOf("/", indexOfDay + 1);
                             if (indexOfMonth > indexOfDay)
                             {
-                                cboDateQuotedMonth.Text = quote_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+                                int positionOfQuoteDateMonth = -1;
+                                string monthQuoteDateNumber = quote_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+
+                                if (int.TryParse(monthQuoteDateNumber, out positionOfQuoteDateMonth))
+                                {
+                                    cboDateQuotedMonth.SelectedIndex = positionOfQuoteDateMonth - 1;
+                                }
+
+                                //cboDateQuotedMonth.Text = quote_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
                                 txtDateQuotedYear.Text = quote_date.Substring(indexOfMonth + 1);
                             }
                         }
@@ -453,7 +497,15 @@ namespace CMCrepairs
                             indexOfMonth = paid_date.IndexOf("/", indexOfDay + 1);
                             if (indexOfMonth > indexOfDay)
                             {
-                                cboPaidDateMonth.Text = paid_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+                                int positionOfPaidDateMonth = -1;
+                                string monthPaidDateNumber = cboPaidDateMonth.Text = paid_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+
+                                if (int.TryParse(monthPaidDateNumber, out positionOfPaidDateMonth))
+                                {
+                                    cboPaidDateMonth.SelectedIndex = positionOfPaidDateMonth - 1;
+                                }
+
+                                //cboPaidDateMonth.Text = paid_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
                                 txtPaidDateYear.Text = paid_date.Substring(indexOfMonth + 1);
                             }
                         }
@@ -516,15 +568,12 @@ namespace CMCrepairs
 
 
             //define the command text
-            mySQLcommand.CommandText = "INSERT INTO cmc_repairs_repair(datetime_id, completed, customer_name, item, item_with_customer, " +
+            mySQLcommand.CommandText = "INSERT INTO cmc_repairs_repair(datetime_id, completed, customer_name, contact_num, item, item_with_customer, " +
                 "rwpa, details, charger, password, po_date, bag, imei, po_id, sim, pa, pa_inf, mem_card, rtc, rtc_inf, other_acc, issues_description, " +
-
                 "backup_specify, quote_price, quote_date, fault_tested_coll, paid_date, paid, store)" +
                 "values(@datetime_id, @completed, @customer_name, @contact_num, @item, @item_with_customer, " +
-
                 "backup_specify, quote_price, quote_date, fault_tested_coll, paid_date, paid)" +
-                "values(@datetime_id, @completed, @customer_name, @item, @item_with_customer, " +
-
+                "values(@datetime_id, @completed, @customer_name, @contact_num, @item, @item_with_customer, " +
                 "@rwpa, @details, @charger, @password, @po_date, @bag, @imei, @po_id, @sim, @pa, @pa_inf, @mem_card, @rtc, @rtc_inf, @other_acc, " +
                 "@issues_description, @backup_specify, @quote_price, @quote_date, @fault_tested_coll, @paid_date, @paid, @store)";
 
@@ -537,10 +586,10 @@ namespace CMCrepairs
             else
                 mySQLcommand.Parameters.AddWithValue("@customer_name", txtCustName.Text);
 
-            //if (txtContactNum.Text.Equals(null) || txtContactNum.Text.Equals(""))
-            //    mySQLcommand.Parameters.AddWithValue("@contact_num", 0);
-            //else
-            //    mySQLcommand.Parameters.AddWithValue("@contact_num", int.Parse(txtContactNum.Text));
+            if (txtContactNum.Text.Equals(null) || txtContactNum.Text.Equals(""))
+                mySQLcommand.Parameters.AddWithValue("@contact_num", 0);
+            else
+                mySQLcommand.Parameters.AddWithValue("@contact_num", txtContactNum.Text);
 
             if (cboItem.Text.Equals(null) || cboItem.Text.Equals(""))
                 mySQLcommand.Parameters.AddWithValue("@item", "");
@@ -749,8 +798,6 @@ namespace CMCrepairs
         {
             if (Validation())
             {
-                MessageBox.Show("Updating record");
-
                 try
                 {
                     //open the connection
@@ -764,7 +811,7 @@ namespace CMCrepairs
                     mySQLcommand.Connection = myConn;
 
                     //define the command text
-                    mySQLcommand.CommandText = "UPDATE cmc_repairs_repair SET datetime_id=@datetime_id, completed=@completed, customer_name=@customer_name, item=@item, item_with_customer=@item_with_customer, " +
+                    mySQLcommand.CommandText = "UPDATE cmc_repairs_repair SET datetime_id=@datetime_id, completed=@completed, customer_name=@customer_name, contact_num=@contact_num, item=@item, item_with_customer=@item_with_customer, " +
                         "rwpa=@rwpa, details=@details, charger=@charger, password=@password, po_date=@po_date, bag=@bag, imei=@imei, po_id=@po_id, sim=@sim, pa=@pa, pa_inf=@pa_inf, mem_card=@mem_card, rtc=@rtc, rtc_inf=@rtc_inf, other_acc=@other_acc, " +
                         "issues_description=@issues_description, backup_specify=@backup_specify, quote_price=@quote_price, quote_date=@quote_date, fault_tested_coll=@fault_tested_coll, paid_date=@paid_date, paid=@paid " +
                         "WHERE datetime_id=@datetime_id";
@@ -778,10 +825,10 @@ namespace CMCrepairs
                     else
                         mySQLcommand.Parameters.AddWithValue("@customer_name", txtCustName.Text);
 
-                    //if (txtContactNum.Text.Equals(null) || txtContactNum.Text.Equals(""))
-                    //    mySQLcommand.Parameters.AddWithValue("@contact_num", "");
-                    //else
-                    //    mySQLcommand.Parameters.AddWithValue("@contact_num", txtContactNum.Text);
+                    if (txtContactNum.Text.Equals(null) || txtContactNum.Text.Equals(""))
+                        mySQLcommand.Parameters.AddWithValue("@contact_num", "");
+                    else
+                        mySQLcommand.Parameters.AddWithValue("@contact_num", txtContactNum.Text);
 
                     if (cboItem.Text.Equals(null) || cboItem.Text.Equals(""))
                         mySQLcommand.Parameters.AddWithValue("@item", "");
@@ -1106,7 +1153,7 @@ namespace CMCrepairs
 
         #endregion
 
-
+        #region Lock/ Unlock Controls
         private void LockControls()
         {
             txtDatetimeID.IsEnabled = false;
@@ -1180,8 +1227,9 @@ namespace CMCrepairs
             txtPaidDateYear.IsEnabled = true;
             txtPaid.IsEnabled = true;
         }
+        #endregion
 
-
+        #region Completed Button Click
         private void btnCompleted_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -1197,7 +1245,7 @@ namespace CMCrepairs
                 mySQLcommand.Connection = myConn;
 
                 //define the command text
-                mySQLcommand.CommandText = "UPDATE cmc_repairs_repair SET datetime_id=@datetime_id, completed=@completed, customer_name=@customer_name, item=@item, item_with_customer=@item_with_customer, " +
+                mySQLcommand.CommandText = "UPDATE cmc_repairs_repair SET datetime_id=@datetime_id, completed=@completed, customer_name=@customer_name, contact_num=@contact_num, item=@item, item_with_customer=@item_with_customer, " +
                     "rwpa=@rwpa, details=@details, charger=@charger, password=@password, po_date=@po_date, bag=@bag, imei=@imei, po_id=@po_id, sim=@sim, pa=@pa, pa_inf=@pa_inf, mem_card=@mem_card, rtc=@rtc, rtc_inf=@rtc_inf, other_acc=@other_acc, " +
                     "issues_description=@issues_description, backup_specify=@backup_specify, quote_price=@quote_price, quote_date=@quote_date, fault_tested_coll=@fault_tested_coll, paid_date=@paid_date, paid=@paid " +
                     "WHERE datetime_id=@datetime_id";
@@ -1227,10 +1275,10 @@ namespace CMCrepairs
                 else
                     mySQLcommand.Parameters.AddWithValue("@customer_name", txtCustName.Text);
 
-                //if (txtContactNum.Text.Equals(null) || txtContactNum.Text.Equals(""))
-                //    mySQLcommand.Parameters.AddWithValue("@contact_num", "");
-                //else
-                //    mySQLcommand.Parameters.AddWithValue("@contact_num", txtContactNum.Text);
+                if (txtContactNum.Text.Equals(null) || txtContactNum.Text.Equals(""))
+                    mySQLcommand.Parameters.AddWithValue("@contact_num", "");
+                else
+                    mySQLcommand.Parameters.AddWithValue("@contact_num", txtContactNum.Text);
 
                 if (cboItem.Text.Equals(null) || cboItem.Text.Equals(""))
                     mySQLcommand.Parameters.AddWithValue("@item", "");
@@ -1335,7 +1383,9 @@ namespace CMCrepairs
                 MessageBox.Show(ex.Message);
             }
         }
+        #endregion
 
+        #region Completed Checkbox Checked
         private void chbCompleted_Checked(object sender, RoutedEventArgs e)
         {
             if (chbCompleted.IsChecked == true)
@@ -1357,5 +1407,6 @@ namespace CMCrepairs
                 UnlockCompletedButton();
             }
         }
+        #endregion
     }
 }
