@@ -110,7 +110,7 @@ namespace CMCrepairs.Menu
                 chbNowSold.Visibility = Visibility.Visible;
 
                 ////define the command text
-                mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address' FROM " + preScreen + " ORDER BY date_sold DESC;";
+                mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address', store AS 'Store' FROM " + preScreen + " ORDER BY date_sold DESC;";
             }
             else if (preScreen.Equals("cmc_repairs_repair"))
             {
@@ -172,10 +172,10 @@ namespace CMCrepairs.Menu
 
                 if ((bool)chbNowSold.IsChecked)
                 {
-                    mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address' FROM " + preScreen + " WHERE now_sold = 1 AND date_sold LIKE '%" + txtOne.Text + "%';";
+                    mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address', store AS 'Store' FROM " + preScreen + " WHERE now_sold = 1 AND date_sold LIKE '%" + txtOne.Text + "%';";
                 }
                 else
-                    mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address' FROM " + preScreen + " WHERE date_sold LIKE '%" + txtOne.Text + "%';";
+                    mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address', store AS 'Store' FROM " + preScreen + " WHERE date_sold LIKE '%" + txtOne.Text + "%';";
             }
             else if (preScreen.Equals("cmc_repairs_repair"))
             {
@@ -631,11 +631,11 @@ namespace CMCrepairs.Menu
 
             if (txtOne.Text.Length > 0)
             {
-                mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address' FROM " + preScreen + " WHERE now_sold = 1 AND date_sold LIKE '%" + txtOne.Text + "%';";
+                mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address', store AS 'Store' FROM " + preScreen + " WHERE now_sold = 1 AND date_sold LIKE '%" + txtOne.Text + "%';";
             }
             else
                 //define the command text
-                mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address' FROM " + preScreen + " WHERE now_sold = 1";
+                mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address', store AS 'Store' FROM " + preScreen + " WHERE now_sold = 1";
 
             try
             {
@@ -670,11 +670,11 @@ namespace CMCrepairs.Menu
 
             if (txtOne.Text.Length > 0)
             {
-                mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address' FROM " + preScreen + " WHERE date_sold LIKE '%" + txtOne.Text + "%';";
+                mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address', store AS 'Store' FROM " + preScreen + " WHERE date_sold LIKE '%" + txtOne.Text + "%';";
             }
             else
                 ////define the command text
-                mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address' FROM " + preScreen + ";";
+                mySQLcommand.CommandText = "SELECT date_sold AS 'Date Sold', brand AS 'Brand', model AS 'Model', network AS 'Network', name AS 'Name', address AS 'Address',store AS 'Store' FROM " + preScreen + ";";
 
             try
             {

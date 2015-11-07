@@ -32,10 +32,11 @@ namespace CMCrepairs
         DymoLabels myLabel;
         DymoAddIn myDymoAddin;
         bool isConnOpen = false;
+        string store = Environment.GetEnvironmentVariable("Location");
 
         int indexOfDay = 0;
         int indexOfMonth = 0;
-
+        string store = Environment.GetEnvironmentVariable("Location");
         string[] days = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15",
                             "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
 
@@ -570,10 +571,12 @@ namespace CMCrepairs
             //define the command text
             mySQLcommand.CommandText = "INSERT INTO cmc_repairs_repair(datetime_id, completed, customer_name, contact_num, item, item_with_customer, " +
                 "rwpa, details, charger, password, po_date, bag, imei, po_id, sim, pa, pa_inf, mem_card, rtc, rtc_inf, other_acc, issues_description, " +
+                "backup_specify, quote_price, quote_date, fault_tested_coll, paid_date, paid, store)" +
+                "values(@datetime_id, @completed, @customer_name, @contact_num, @item, @item_with_customer, " +
                 "backup_specify, quote_price, quote_date, fault_tested_coll, paid_date, paid)" +
                 "values(@datetime_id, @completed, @customer_name, @contact_num, @item, @item_with_customer, " +
                 "@rwpa, @details, @charger, @password, @po_date, @bag, @imei, @po_id, @sim, @pa, @pa_inf, @mem_card, @rtc, @rtc_inf, @other_acc, " +
-                "@issues_description, @backup_specify, @quote_price, @quote_date, @fault_tested_coll, @paid_date, @paid)";
+                "@issues_description, @backup_specify, @quote_price, @quote_date, @fault_tested_coll, @paid_date, @paid, @store)";
 
             //add values provided by user
             mySQLcommand.Parameters.AddWithValue("@datetime_id", txtDatetimeID.Text);
@@ -693,6 +696,10 @@ namespace CMCrepairs
                 mySQLcommand.Parameters.AddWithValue("@paid", 0);
             else
                 mySQLcommand.Parameters.AddWithValue("@paid", Double.Parse(txtPaid.Text));
+            if (store.Equals(null) || store.Equals(""))
+                mySQLcommand.Parameters.AddWithValue("@store", "Unknown");
+            else
+                mySQLcommand.Parameters.AddWithValue("@store", store);
 
             try
             {
@@ -928,6 +935,8 @@ namespace CMCrepairs
                         mySQLcommand.Parameters.AddWithValue("@paid", 0);
                     else
                         mySQLcommand.Parameters.AddWithValue("@paid", Double.Parse(txtPaid.Text));
+
+                  
 
                     //mySQLcommand.ExecuteNonQuery();
                     MySqlDataReader mySQLDataReader;
