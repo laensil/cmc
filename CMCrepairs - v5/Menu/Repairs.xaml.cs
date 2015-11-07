@@ -32,8 +32,7 @@ namespace CMCrepairs
         DymoLabels myLabel;
         DymoAddIn myDymoAddin;
         bool isConnOpen = false;
-        string store = Environment.GetEnvironmentVariable("Location");
-
+        
         int indexOfDay = 0;
         int indexOfMonth = 0;
         string store = Environment.GetEnvironmentVariable("Location");
