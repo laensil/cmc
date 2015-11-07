@@ -44,6 +44,8 @@ namespace CMCrepairs
 
         string id;
 
+        bool isConnOpen = false;
+
         #region Constructors
         public Stock(MySqlConnection myconn)
         {
@@ -124,6 +126,7 @@ namespace CMCrepairs
         }
         #endregion
 
+        #region PopuldateMonthsDictionary
         public Dictionary<string, string> PopulateMonthsDictionary(Dictionary<string, string> months)
         {
             months.Add("Jan", "01");
@@ -141,18 +144,23 @@ namespace CMCrepairs
 
             return months;
         }
+        #endregion
 
+        #region Set Dates
         protected void SetDates()
         {
             cboBuyDateDays.ItemsSource = days;
             cboBuyDateMonth.ItemsSource = monthsWithNames.Keys;
             txtBuyDateYear.Text = DateTime.Now.Year.ToString();
         }
+        #endregion
 
+        #region MergeDate
         protected string MergeDate()
         {
             return cboBuyDateDays.Text + "/" + monthsWithNames[cboBuyDateMonth.Text] + "/" + txtBuyDateYear.Text;
         }
+        #endregion
 
         #region SetID for barcode
         private void SetID()
@@ -257,7 +265,7 @@ namespace CMCrepairs
                     int itemNull = mySQLDataReader.GetOrdinal("item");
                     int otherItemNull = mySQLDataReader.GetOrdinal("other_item");
                     int brandNull = mySQLDataReader.GetOrdinal("brand");
-                    int modelNull = mySQLDataReader.GetOrdinal("model");
+                    //int modelNull = mySQLDataReader.GetOrdinal("model");
                     int imeiNull = mySQLDataReader.GetOrdinal("imei");
                     int networkNull = mySQLDataReader.GetOrdinal("network");
                     int otherAccNull = mySQLDataReader.GetOrdinal("other_acc");
@@ -271,6 +279,7 @@ namespace CMCrepairs
                     int contactNumNull = mySQLDataReader.GetOrdinal("contact_num");
                     int postCodeNull = mySQLDataReader.GetOrdinal("post_code");
                     int displayPriceNull = mySQLDataReader.GetOrdinal("display_price");
+                    int statusOfItemNull = mySQLDataReader.GetOrdinal("status_of_item");
 
                     string date_sold = mySQLDataReader.GetString("date_sold");
                     string now_sold = mySQLDataReader.GetInt32("now_sold").ToString();
@@ -280,7 +289,7 @@ namespace CMCrepairs
                     string item = mySQLDataReader.IsDBNull(itemNull) ? null : mySQLDataReader.GetString("item");
                     string other_item = mySQLDataReader.IsDBNull(otherItemNull) ? null : mySQLDataReader.GetString("other_item");
                     string brand = mySQLDataReader.IsDBNull(brandNull) ? null : mySQLDataReader.GetString("brand");
-                    string model = mySQLDataReader.IsDBNull(modelNull) ? null : mySQLDataReader.GetString("model");
+                    //string model = mySQLDataReader.IsDBNull(modelNull) ? null : mySQLDataReader.GetString("model");
                     string imei = mySQLDataReader.IsDBNull(imeiNull) ? null : mySQLDataReader.GetString("imei");
                     string network = mySQLDataReader.IsDBNull(networkNull) ? null : mySQLDataReader.GetString("network");
                     string charger = mySQLDataReader.GetInt32("charger").ToString();
@@ -297,6 +306,7 @@ namespace CMCrepairs
                     string contact_num = mySQLDataReader.IsDBNull(contactNumNull) ? null : mySQLDataReader.GetString("contact_num");
                     string post_code = mySQLDataReader.IsDBNull(postCodeNull) ? null : mySQLDataReader.GetString("post_code");
                     string display_price = mySQLDataReader.IsDBNull(displayPriceNull) ? null : mySQLDataReader.GetString("display_price");
+                    string status_of_item = mySQLDataReader.IsDBNull(statusOfItemNull) ? null : mySQLDataReader.GetString("status_of_item");
 
                     if (now_sold.Equals("1"))
                     {
@@ -306,14 +316,16 @@ namespace CMCrepairs
                     {
                         chbNowSold.IsChecked = false;
                     }
+                    isConnOpen = true;
                     txtDateSold.Text = date_sold;
+                    isConnOpen = false;
                     txtPriceSold.Text = price_sold;
                     cboGrade.SelectedValue = grade;
                     cboCheckMEND.SelectedValue = checkmend;
                     cboItem.Text = item;
                     txtOtherItem.Text = other_item;
                     txtBrand.Text = brand;
-                    txtModel.Text = model;
+                    //txtModel.Text = model;
                     txtIMEI.Text = imei;
                     txtNetwork.Text = network;
 
@@ -358,7 +370,17 @@ namespace CMCrepairs
                             indexOfMonth = buy_date.IndexOf("/", indexOfDay + 1);
                             if (indexOfMonth > indexOfDay)
                             {
-                                cboBuyDateMonth.Text = buy_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+                                int indexOfMonthValue = -1;
+                                string monthBuyDateNumber = buy_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1);
+
+                                if (int.TryParse(monthBuyDateNumber, out indexOfMonthValue))
+                                {
+                                    cboBuyDateMonth.SelectedIndex = indexOfMonthValue - 1;
+                                }
+
+                                //bool k = int.TryParse(buy_date.Substring(indexOfDay + 1, (indexOfMonth - indexOfDay) - 1), out indexOfMonthValue);
+
+                                //cboBuyDateMonth.SelectedIndex = indexOfMonthValue;
                                 txtBuyDateYear.Text = buy_date.Substring(indexOfMonth + 1);
                             }
                         }
@@ -376,6 +398,7 @@ namespace CMCrepairs
                     txtContactNum.Text = contact_num;
                     txtPostCode.Text = post_code;
                     txtDisplayPrice.Text = display_price;
+                    cboStatusOfItem.SelectedValue = status_of_item;
                 }
 
                 //close the connection
@@ -602,11 +625,14 @@ namespace CMCrepairs
         }
         #endregion
 
+        #region Search Button Click
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             Switcher.Switch(new SearchID("cmc_repairs_stock", myConn));
         }
+        #endregion
 
+        #region Exit Button Click
         private void ExitButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             //System.Windows.Forms.DialogResult answer = MessageBox.Show("Menu?", "", System.Windows.Forms.MessageBoxButtons.YesNo);
@@ -614,6 +640,7 @@ namespace CMCrepairs
             //if (answer == System.Windows.Forms.DialogResult.Yes)
             Switcher.Switch(new MainWindow());
         }
+        #endregion
 
         #region Update Click
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -646,8 +673,9 @@ namespace CMCrepairs
 
                 //define the command text
                 mySQLcommand.CommandText = "UPDATE cmc_repairs_stock SET now_sold=@now_sold, date_sold=@date_sold, price_sold=@price_sold, grade=@grade, checkmend=@checkmend, item=@item, other_item=@other_item, " +
-                    "brand=@brand, model=@model, imei=@imei, network=@network, charger=@charger, other_acc=@other_acc, sec_seal_num=@sec_seal_num, box=@box, warranty=@warranty, " +
-                    "mem_card=@mem_card, additional_notice=@addtional_notice, buy_date=@buy_date, bought_price=@bought_price, name=@name, address=@address, contact_num=@contact_num, post_code=@post_code, display_price=@display_price " +
+                    "brand=@brand, imei=@imei, network=@network, charger=@charger, other_acc=@other_acc, sec_seal_num=@sec_seal_num, box=@box, warranty=@warranty, " +
+                    "mem_card=@mem_card, additional_notice=@addtional_notice, buy_date=@buy_date, bought_price=@bought_price, name=@name, address=@address, contact_num=@contact_num, post_code=@post_code, " +
+                    "display_price=@display_price, status_of_item=@status_of_item " +
                     "WHERE date_sold=@date_sold";
 
                 //add values provided by user
@@ -689,10 +717,10 @@ namespace CMCrepairs
                 else
                     mySQLcommand.Parameters.AddWithValue("@brand", txtBrand.Text);
 
-                if (txtModel.Text.Equals(null) || txtModel.Text.Equals(""))
-                    mySQLcommand.Parameters.AddWithValue("@model", "");
-                else
-                    mySQLcommand.Parameters.AddWithValue("@model", txtModel.Text);
+                //if (txtModel.Text.Equals(null) || txtModel.Text.Equals(""))
+                //    mySQLcommand.Parameters.AddWithValue("@model", "");
+                //else
+                //    mySQLcommand.Parameters.AddWithValue("@model", txtModel.Text);
 
                 if (txtIMEI.Text.Equals(null) || txtIMEI.Text.Equals(""))
                     mySQLcommand.Parameters.AddWithValue("@imei", "");
@@ -774,6 +802,11 @@ namespace CMCrepairs
                 else
                     mySQLcommand.Parameters.AddWithValue("@display_price", decimal.Parse(txtDisplayPrice.Text));
 
+                if (cboStatusOfItem.Text.Equals(null) || cboStatusOfItem.Text.Equals(""))
+                    mySQLcommand.Parameters.AddWithValue("@status_of_item", "");
+                else
+                    mySQLcommand.Parameters.AddWithValue("@status_of_item", cboStatusOfItem.Text);
+
                 //mySQLcommand.ExecuteNonQuery();
                 MySqlDataReader mySQLDataReader;
                 try
@@ -788,9 +821,7 @@ namespace CMCrepairs
                 //close the connection
                 myConn.Close();
 
-
             }
-            else { }
         }
         #endregion
 
@@ -855,7 +886,7 @@ namespace CMCrepairs
             int num2;
             bool num = Int32.TryParse(txtDateSold.Text.ToString(), out num2);
 
-            if (num)
+            if (num && !isConnOpen)
             {
 
                 if ((!txtDateSold.Text.Equals(null) || !txtDateSold.Text.Equals("")) && (cboIDs.Items.Contains(txtDateSold.Text) || idsAndDateSold.ContainsKey(Int32.Parse(txtDateSold.Text.ToString()))))
@@ -963,12 +994,12 @@ namespace CMCrepairs
                 if (myDymoAddin.Open(@"C:\Labels\SaleSmall.label"))
                 {
                     if ((txtBrand.Text.ToString().Equals(null) || txtBrand.Text.ToString().Equals("")) ||
-                        (txtModel.Text.ToString().Equals(null) || txtModel.Text.ToString().Equals("")) ||
+                        //(txtModel.Text.ToString().Equals(null) || txtModel.Text.ToString().Equals("")) ||
                         (txtDateSold.Text.ToString().Equals(null) || txtDateSold.Text.ToString().Equals("")) ||
                         (txtNetwork.Text.ToString().Equals(null) || txtNetwork.Text.ToString().Equals("")) ||
                         (txtDisplayPrice.Text.ToString().Equals(null) || txtDisplayPrice.Text.ToString().Equals("")))
                     {
-                        MessageBox.Show("Sale Date, Brand, Model, Network or Display Price is empty");
+                        MessageBox.Show("Sale Date, Brand, Network or Display Price is empty");
                     }
                     else
                     {
@@ -983,7 +1014,7 @@ namespace CMCrepairs
                             MessageBox.Show("Barcode has printed - item not updated - please check ID");
                         }
 
-                        string combine = txtBrand.Text + " " + txtModel.Text;
+                        string combine = txtBrand.Text;// +" " + txtModel.Text;
                         string combineAddDetailsNetwork = txtAdditionalNotice.Text + "  " + txtNetwork.Text;
 
                         myLabel.SetField("lblBrand", combine.ToString());
@@ -1004,17 +1035,16 @@ namespace CMCrepairs
         }
         #endregion
 
-
+        #region Lock/Unlock Controls
         private void LockControls()
         {
-            txtDateSold.IsEnabled = false;
             txtPriceSold.IsEnabled = false;
             cboGrade.IsEnabled = false;
             cboCheckMEND.IsEnabled = false;
             cboItem.IsEnabled = false;
             txtOtherItem.IsEnabled = false;
             txtBrand.IsEnabled = false;
-            txtModel.IsEnabled = false;
+            //txtModel.IsEnabled = false;
             txtIMEI.IsEnabled = false;
             txtNetwork.IsEnabled = false;
             txtOtherAcc.IsEnabled = false;
@@ -1038,14 +1068,13 @@ namespace CMCrepairs
 
         private void UnLockControls()
         {
-            txtDateSold.IsEnabled = true;
             txtPriceSold.IsEnabled = true;
             cboGrade.IsEnabled = true;
             cboCheckMEND.IsEnabled = true;
             cboItem.IsEnabled = true;
             txtOtherItem.IsEnabled = true;
             txtBrand.IsEnabled = true;
-            txtModel.IsEnabled = true;
+            //txtModel.IsEnabled = true;
             txtIMEI.IsEnabled = true;
             txtNetwork.IsEnabled = true;
             txtOtherAcc.IsEnabled = true;
@@ -1065,7 +1094,7 @@ namespace CMCrepairs
             txtDisplayPrice.IsEnabled = true;
             chbCharger.IsEnabled = true;
         }
-
+        #endregion
 
         #region Lock/Unlock Buttons
 
@@ -1121,7 +1150,7 @@ namespace CMCrepairs
 
         #endregion
 
-
+        #region Sold Button Click
         private void btnSold_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -1139,8 +1168,8 @@ namespace CMCrepairs
 
                 //define the command text
                 mySQLcommand.CommandText = "UPDATE cmc_repairs_stock SET now_sold=@now_sold, date_sold=@date_sold, price_sold=@price_sold, grade=@grade, checkmend=@checkmend, item=@item, other_item=@other_item, " +
-                    "brand=@brand, model=@model, imei=@imei, network=@network, charger=@charger, other_acc=@other_acc, sec_seal_num=@sec_seal_num, box=@box, warranty=@warranty, " +
-                    "mem_card=@mem_card, additional_notice=@addtional_notice, buy_date=@buy_date, bought_price=@bought_price, name=@name, address=@address, contact_num=@contact_num, post_code=@post_code, display_price=@display_price " +
+                    "brand=@brand, imei=@imei, network=@network, charger=@charger, other_acc=@other_acc, sec_seal_num=@sec_seal_num, box=@box, warranty=@warranty, " +
+                    "mem_card=@mem_card, additional_notice=@addtional_notice, buy_date=@buy_date, bought_price=@bought_price, name=@name, address=@address, contact_num=@contact_num, post_code=@post_code, display_price=@display_price, status_of_item=@status_of_item " +
                     "WHERE date_sold=@date_sold";
 
                 //add values provided by user
@@ -1193,10 +1222,10 @@ namespace CMCrepairs
                 else
                     mySQLcommand.Parameters.AddWithValue("@brand", txtBrand.Text);
 
-                if (txtModel.Text.Equals(null) || txtModel.Text.Equals(""))
-                    mySQLcommand.Parameters.AddWithValue("@model", "");
-                else
-                    mySQLcommand.Parameters.AddWithValue("@model", txtModel.Text);
+                //if (txtModel.Text.Equals(null) || txtModel.Text.Equals(""))
+                //    mySQLcommand.Parameters.AddWithValue("@model", "");
+                //else
+                //    mySQLcommand.Parameters.AddWithValue("@model", txtModel.Text);
 
                 if (txtIMEI.Text.Equals(null) || txtIMEI.Text.Equals(""))
                     mySQLcommand.Parameters.AddWithValue("@imei", "");
@@ -1271,6 +1300,11 @@ namespace CMCrepairs
                 else
                     mySQLcommand.Parameters.AddWithValue("@display_price", decimal.Parse(txtDisplayPrice.Text));
 
+                if (cboStatusOfItem.Text.Equals(null) || cboStatusOfItem.Text.Equals(""))
+                    mySQLcommand.Parameters.AddWithValue("@status_of_item", "");
+                else
+                    mySQLcommand.Parameters.AddWithValue("@status_of_item", cboStatusOfItem.Text);
+
                 //mySQLcommand.ExecuteNonQuery();
                 MySqlDataReader mySQLDataReader;
                 try
@@ -1291,8 +1325,9 @@ namespace CMCrepairs
             //close the connection
             myConn.Close();
         }
+        #endregion
 
-
+        #region NowSold Checked
         private void chbNowSold_Checked(object sender, RoutedEventArgs e)
         {
             if (chbNowSold.IsChecked == true)
@@ -1312,5 +1347,6 @@ namespace CMCrepairs
                 UnlockUpdateButton();
             }
         }
+        #endregion
     }
 }

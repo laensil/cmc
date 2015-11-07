@@ -4,7 +4,7 @@
         Height="500" Width="640" HorizontalAlignment="Center" >
 
     <UserControl.Resources>
-
+        
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Orange" />
             <Setter Property="Padding" Value="10,0,10,0" />
@@ -62,31 +62,40 @@
         <!--TextBlock.Foreground="Black"-->
 
     </UserControl.Resources>
-    
+
     <StackPanel Orientation="Vertical">
         <TextBlock FontSize="72" FontWeight="Bold" Padding="0,0,0,60" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" HorizontalAlignment="Center" VerticalAlignment="Center">Menu</TextBlock>
-        
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
 
-            <Button Margin="5" Width="170" Name="SaleButton" Click="SaleButton_Click">
-                <StackPanel>
-                    <Image Height="70" Source="/CMCrepairs;component/images/Drive-Local-icon.png" />
-                    <Label Content="Trade" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
-                </StackPanel>
-            </Button>
-            <Button Margin="5" Width="170" Name="RepairsButton" Click="RepairsButton_Click">
-                <StackPanel>
-                    <Image Height="70" Source="/CMCrepairs;component/images/Computer-icon.png" />
-                    <Label Content="Repairs" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
-                </StackPanel>
-            </Button>
-            <Button Margin="5" Width="170" Name="StockButton" Click="StockButton_Click">
-                <StackPanel>
-                    <Image Height="70" Source="/CMCrepairs;component/images/DVD-CD-icon.png" />
-                    <Label Content="Stock" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
-                </StackPanel>
-            </Button>
-            
+        <StackPanel Orientation="Vertical" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Button Margin="5" Width="170" Name="SaleButton" Click="SaleButton_Click">
+                    <StackPanel>
+                        <Image Height="70" Source="/CMCrepairs;component/images/Drive-Local-icon.png" />
+                        <Label Content="Trade" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
+                    </StackPanel>
+                </Button>
+                <Button Margin="5" Width="170" Name="RepairsButton" Click="RepairsButton_Click">
+                    <StackPanel>
+                        <Image Height="70" Source="/CMCrepairs;component/images/Computer-icon.png" />
+                        <Label Content="Repairs" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
+                    </StackPanel>
+                </Button>
+                <Button Margin="5" Width="170" Name="StockButton" Click="StockButton_Click">
+                    <StackPanel>
+                        <Image Height="70" Source="/CMCrepairs;component/images/DVD-CD-icon.png" />
+                        <Label Content="Stock" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
+                    </StackPanel>
+                </Button>
+            <!--</StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >-->
+                <!--<Button Margin="5" Width="170" Name="ReportsButton" >
+                    <StackPanel>
+                        <Image Height="70" Source="/CMCrepairs;component/images/Drive-Local-icon.png" />
+                        <Label Content="Reports" FontFamily="pack://Application:,,,/Images/#Tranquila DEMO" FontSize="32" />
+                    </StackPanel>
+                </Button>-->
+                
+            </StackPanel>
         </StackPanel>
     </StackPanel>
 </UserControl>

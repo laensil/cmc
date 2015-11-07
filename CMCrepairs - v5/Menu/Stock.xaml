@@ -118,7 +118,15 @@
 
         <CheckBox Name="chbNowSold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Now Sold?" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontStyle="Italic" Checked="chbNowSold_Checked" Unchecked="chbNowSold_Checked" />
 
-        <ComboBox PreviewTextInput="cboIDs_Change" MaxDropDownHeight="88" Name="cboIDs" PreviewKeyUp="cboIDs_Change" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" Height="22" DropDownClosed="cboIDs_Change" TabIndex="2" />
+        <ComboBox PreviewTextInput="cboIDs_Change" MaxDropDownHeight="88" Name="cboIDs" PreviewKeyUp="cboIDs_Change" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" Height="22" DropDownClosed="cboIDs_Change" TabIndex="2" Margin="0,0,0,28" />
+
+        <Label Grid.Row="0" Grid.Column="5" VerticalAlignment="Bottom" Content="Status" FontSize="12" />
+        <ComboBox Name="cboStatusOfItem" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="2" Height="22" TabIndex="2" Margin="0,28,0,0"  >
+            <ComboBoxItem Content="For Sale" />
+            <ComboBoxItem Content="Pending" />
+            <ComboBoxItem Content="For Parts" />
+            <ComboBoxItem Content="Sold" />
+        </ComboBox>
 
         <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" VerticalAlignment="Center" HorizontalAlignment="Right" Content="ID" />
         <!--<wfi:WindowsFormsHost Name="wfhDateSoldWrapper" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" >
@@ -155,11 +163,11 @@
         <Label Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Content="Other Item" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <TextBox Name="txtOtherItem" TabIndex="7" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
-        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Brand" />
-        <TextBox Name="txtBrand" TabIndex="8" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Brand/Model" />
+        <TextBox Name="txtBrand" TabIndex="8" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="5" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
-        <Label Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Content="Model" HorizontalAlignment="Right" VerticalAlignment="Center" />
-        <TextBox Name="txtModel" TabIndex="9" Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <!--<Label Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Content="Model" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox Name="txtModel" TabIndex="9" Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />-->
 
         <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="IMEI" />
         <TextBox Name="txtIMEI" TabIndex="10" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Height="22" VerticalAlignment="Center" VerticalContentAlignment="Center" />
